@@ -1,0 +1,179 @@
+.index-button {
+  display: flow-root;
+}
+
+.index-button>view {
+  float: left;
+  width: auto;
+  height: 100%;
+}
+
+.index-button>view>image {
+  border-radius: 32rpx;
+  box-shadow: var(--ShadowSize) var(--grayShadow);
+}
+
+.percetHeiht {
+  height: 320rpx;
+  width: 43vw;
+  margin-left: 15rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 32rpx;
+}
+
+.mapHeight {
+  height: 150rpx;
+  width: 280rpx;
+  margin-left: 20rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 32rpx;
+}
+
+.buyHeight {
+  height: 140rpx;
+  width: 280rpx;
+  margin-left: 20rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 32rpx;
+}
+
+
+.cardTitle {
+  color: #fff;
+  padding: 140rpx 60rpx;
+  font-size: 40rpx;
+  font-weight: 300;
+  transform: skew(-10deg, 0deg);
+  position: relative;
+  text-shadow: 0px 0px 0rpx rgba(0, 0, 0, 0.3)
+}
+
+.cardTitle::before {
+  position: absolute;
+  width: 60rpx;
+  height: 6rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  display: block;
+  top: 60rpx;
+  left: 50rpx;
+  transform: skew(10deg, 0deg);
+}
+
+.cardTitle::after {
+  position: absolute;
+  width: 140rpx;
+  border-radius: 6rpx;
+  height: 24rpx;
+  background-color: #fff;
+  display: block;
+  bottom: 76rpx;
+  left: 90rpx;
+  transform: skew(10deg, 0deg);
+  opacity: 0.1;
+}
+
+.top {
+  position: fixed;
+  z-index: 1024;
+}
+
+.bottomline {
+  border-bottom: 1px solid #ccc;
+}
+
+.gym-list>.gym-item {
+  background: white;
+  border-radius: 24rpx;
+  margin-top: 12rpx;
+  margin-left: 12rpx;
+  margin-right: 12rpx;
+}
+
+.gym-list>.gym-item:first-child {
+  margin-top: 12rpx;
+}
+
+.gym-list>.gym-item:last-child {
+  margin-bottom: 18rpx;
+}
+
+.gym-item>.title {
+  padding: 25rpx;
+  color: grey
+}
+
+.img-sub>image {
+  height: 180rpx;
+  width: 180rpx;
+  margin-left: 30rpx;
+  border-radius: 24rpx;
+  justify-content: center;
+  align-content: center;
+  background: #e7ebed
+}
+
+.content>view {
+  margin-top: 5rpx;
+}
+
+.orderbtns {
+  padding: 16rpx;
+  margin-left: 18rpx;
+  margin-right: 18rpx;
+}
+
+.scroll-detai {
+  height: 145rpx;
+}
+
+.gym-item>image {
+  width: 100%;
+  height: 320rpx;
+  border-radius: 36rpx;
+  box-shadow: 5rpx 5rpx 5rpx #e1e1e1;
+}
+
+.content>.detail {
+  display: block;
+  display: -webkit-box;
+  max-width: 400px;
+  font-size: 28rpx;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid-view {
+  display: grid;
+}
+
+.coatchName{
+  margin: 36rpx;
+  font-size: 48rpx;
+}
+
+.detail{
+  margin: 16rpx;
+  font-size: 24rpx;
+  text-indent:2em;
+}
+
+.cu-tag-coatch {
+	position: absolute;
+  right: 0;
+  left:41%;
+  top: 30rpx;
+  width: 100%;
+  transform:rotate(45deg);
+}
+
+.imagesize {
+  margin-top: 10%;
+  width: 46%;
+  height: 80%;
+}

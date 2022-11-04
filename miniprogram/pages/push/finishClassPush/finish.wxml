@@ -1,0 +1,22 @@
+<cu-custom bgColor="bg-white">
+  <view slot="content">完成授课</view>
+</cu-custom>
+<view>
+  <view class='header'>
+    <view class="userinfo-avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+  </view>
+  <view class='content'>
+    <view>请问您是否已经结束本次私教？</view>
+    <text></text>
+  </view>
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-gradual-orange lg" bindtap="confirm">
+      是
+    </button>
+    <button class="cu-btn bg-grey lg margin-top" bindtap="cancel">
+      否
+    </button>
+  </view>
+</view>

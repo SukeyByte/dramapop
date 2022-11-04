@@ -1,0 +1,51 @@
+<wxs src="../../../util/dataOption.wxs" module="tools"></wxs>
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">健身房列表</view>
+</cu-custom>
+
+<view class="gym-card case">
+  <view class="gym-item shadow" wx:for="{{sellerList}}" wx:key="index">
+    <view class="buycard image" bindtap="bindSeller" bindlongpress="unbindSeller" data-item="{{item}}">
+      <image mode="aspectFill" src='{{item.logoimg}}'>
+      </image>
+      <view wx:if="{{bindingid == item._id}}" class="cu-tag bg-orange margin-top-xs">绑定健身房</view>
+      <view class="cu-bar bg-shadeBottom-msk">
+        <view class="text-center text-xl">
+          <text>健身房  {{item.name}}</text>
+        </view>
+        <view class="text-center">
+          <text>距离你 {{tools.numberToFix(item.distance)}}米</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="text-center text-gray">
+点击即可绑定健身房,长按绑定的健身房可以取消绑定
+</view>
+<view class="text-center text-gray">
+绑定或取消绑定后需要刷新才能展示
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>
+
+<view class="cu-modal {{showModel?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{confirmText}}</view>
+    </view>
+    <view class="padding-xl">
+      {{confirmConetnt}}
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn bg-red margin-left" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="save">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

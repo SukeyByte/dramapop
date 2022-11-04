@@ -1,0 +1,53 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">本月授课</view>
+</cu-custom>
+
+<view wx:if='{{list.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">还没有授课呢~</text>
+  </view>
+</view>
+
+<view class="gym-list menu-avatar margin-top">
+  <view class="gym-item margin-top-xs" wx:for="{{list}}" wx:key="index" data-id="{{index}}">
+    <view class="title">
+      <text class="cuIcon-location"></text>授课健身房-{{sallerName}}
+    </view>
+    <view class="card-row" data-item="{{item}}">
+      <view class="caro-row-one img-sub lg ">
+        <image src="{{item.clientInfo.wxuserInfo.avatarUrl}}" mode="aspectFill"></image>
+      </view>
+      <view class="caro-row-span content margin-left" bindtap="makephonecall"
+        data-phone='{{item.clientInfo.wxphonenumber}}'>
+        <view class="className text-xl">{{item.name}}</view>
+        <view class="text-gray">预计授课时间</view>
+        <text class="text-red margin-right">{{item.classTime}}</text>
+        <view class="text-sm">学员昵称:{{item.clientInfo.wxuserInfo.nickName}}</view>
+        <view class="text-gray">电话号码：<text class="cuIcon-phone text-orange">{{item.clientInfo.wxphonenumber}}</text>
+        </view>
+      </view>
+      <view wx:if="{{item.status!=0}}" class="round cu-tag lg bg-white" style="display:flex;height: auto;">
+        <text
+          class="cu-tag round {{item.status==1?'bg-green cuIcon-check':'bg-red cuIcon-close'}} line-orange text-white"></text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="cu-list menu bg-white" wx:for="{{list}}" wx:key='index'>
+  <view class="solids-bottom padding-xs flex align-center">
+    <view class="padding">{{item.classTime}}</view>
+    <view class="flex-sub text-center">
+      <view class="padding">{{item.className}}</view>
+    </view>
+  </view>
+</view> -->
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

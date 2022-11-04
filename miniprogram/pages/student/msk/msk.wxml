@@ -1,0 +1,39 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">优惠券</view>
+</cu-custom>
+
+<view class="area">
+  <view class="padding-xs flex margin50p">
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-xsl padding">
+        <text class="text-red">恭喜你</text>
+      </view>
+      <view class="padding text-xxl text-red ">获得{{mskDetail.name}}优惠券</view>
+    </view>
+  </view>
+</view>
+
+<view class="padding">
+  <view class="wrapper">
+    <view class="msk">
+      <view class="coupon-top text-price text-xsl text-white">
+        {{mskDetail.price}}
+      </view>
+      <view class="coupon-middle text-white">
+        {{mskDetail.name}}
+      </view>
+      <view class="coupon-bottom text-white">
+        有效期：{{mskDetail.begTime}}-{{mskDetail.endTime}}
+      </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="tip">
+      <button class="getNow" size="mini" bindtap="getNow">立 即  领 取</button>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

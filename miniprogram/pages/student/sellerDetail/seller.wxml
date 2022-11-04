@@ -1,0 +1,64 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{currentSeller.name}}</view>
+</cu-custom>
+
+<swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+  duration="500">
+  <swiper-item bindtap="tobanner" wx:for="{{currentSeller.sellerimg}}" wx:key="index">
+    <image src="{{item}}" mode='scaleToFill' lazy-load="true"></image>
+  </swiper-item>
+</swiper>
+<view class="cu-bar">
+  <view class="action">
+    <view class='cuIcon-location text-xl padding-tb'>
+      {{currentSeller.city}} {{currentSeller.district}} {{currentSeller.addressName}}</view>
+  </view>
+</view>
+
+<view class="cu-bar">
+  <view class="action padding">
+    {{currentSeller.detaiName}}
+  </view>
+</view>
+
+<view class="cu-bar">
+  <view class="action">
+    <text class="icon-gym text-orange text-bold text-lg"></text>教练
+  </view>
+</view>
+
+
+<view class="grid col-3 no-border">
+  <view class="" wx:for="{{coatchList}}" wx:key="index">
+    <view class="userBlock shadow-warp bg-white">
+      <view>
+        {{item.name}} 教练
+      </view>
+      <view class="userImage shadow-warp">
+        <image class="userHeader " src="{{item.imagepath}}">
+        </image>
+      </view>
+      <view>
+        <button class="cu-btn round sm bg-orange" bindtap="coatchDetail" data-item="{{item}}">查看教练</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar">
+  <view class="action">
+    <text class="cuIcon-title text-orange text-bold text-lg"></text>优惠活动
+  </view>
+</view>
+
+<view class="gym-list">
+  <view class="gym-item  shadow-blur" bindtap="toChild" data-type="{{item.type}}" data-url="{{item.url}}"
+    wx:for="{{activityList}}" wx:key="index">
+    <image src="{{item.imgpath}}" lazy-load="true" mode="aspectFill"></image>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

@@ -1,0 +1,94 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">申请认证教练</view>
+</cu-custom>
+
+<view class="cu-form-group margin-top">
+  <view class="title">姓名</view>
+  <input value="{{name}}" bindinput="namechange" placeholder="姓名"></input>
+</view>
+<view class="cu-form-group">
+  <view class="title">年龄</view>
+  <input value="{{age}}" bindinput="agechange" placeholder="20"></input>
+</view>
+
+<view class="cu-bar bg-white margin-top">
+  <view class="action">
+    请上传图片
+  </view>
+  <view class="action">
+    {{imgList.length}}/1
+  </view>
+</view>
+
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <image src='{{imgList[index]}}' mode='aspectFill'></image>
+      <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
+    <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white margin-top">
+  <view class="action">
+    请上传资质
+  </view>
+  <view class="action">
+    {{qimgList.length}}/3
+  </view>
+</view>
+
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{qimgList}}" wx:key="index" bindtap="ViewpImage" data-url="{{qimgList[index]}}">
+      <image src='{{qimgList[index]}}' mode='aspectFill'></image>
+      <view class="cu-tag bg-red" catchtap="DelpImg" data-index="{{index}}">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
+    <view class="solids" bindtap="ChoosepImage" wx:if="{{qimgList.length<3}}">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+  </view>
+</view>
+
+
+<view class="cu-form-group">
+  <view class="title">性别</view>
+  <picker bindchange="sexchange" value="{{sex}}" range="{{picker}}">
+    <view class="picker">
+      {{sex == 0?'女':'男'}}
+    </view>
+  </picker>
+</view>
+<view class="cu-form-group">
+  <view class="title">联系电话</view>
+  <input type="number" value="{{number}}" bindinput="numberchange" placeholder="手机号码"></input>
+  <view class="cu-capsule radius">
+    <view class="cu-tag bg-blue">
+      +86
+    </view>
+    <view class="cu-tag line-blue">
+      中国大陆
+    </view>
+  </view>
+</view>
+
+<view class="cu-form-group margin-top">
+  <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" value="{{itemDetail}}"
+    placeholder="请输入简介/资质"></textarea>
+</view>
+
+<view class="padding flex flex-direction">
+  <button bindtap="submit" class="cu-btn bg-orange lg">确定</button>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

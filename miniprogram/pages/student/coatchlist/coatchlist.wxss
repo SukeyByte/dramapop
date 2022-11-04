@@ -1,0 +1,75 @@
+.top {
+  position: fixed;
+  z-index: 1024;
+}
+
+.bottomline {
+  border-bottom: 1px solid #ccc;
+}
+
+.gym-list>.gym-item {
+  background: white;
+  border-radius: 24rpx;
+  margin-top: 12rpx;
+  margin-left: 12rpx;
+  margin-right: 12rpx;
+}
+
+.gym-list>.gym-item:first-child {
+  margin-top: 12rpx;
+}
+
+.gym-list>.gym-item:last-child {
+  margin-bottom: 18rpx;
+}
+
+.gym-item>.title {
+  padding: 25rpx;
+  color: grey
+}
+
+.img-sub>image {
+  height: 180rpx;
+  width: 180rpx;
+  margin-left: 30rpx;
+  border-radius: 24rpx;
+  justify-content: center;
+  align-content: center;
+  background: #e7ebed
+}
+
+.content>view {
+  margin-top: 5rpx;
+}
+
+.orderbtns {
+  padding: 16rpx;
+  margin-left: 18rpx;
+  margin-right: 18rpx;
+}
+
+.scroll-detai {
+  height: 145rpx;
+}
+
+.lg>image {
+  display: flex;
+  float: right;
+  width: 180rpx;
+  height: 200rpx;
+  border-radius: 0 24rpx 24rpx 0;
+}
+
+.content>.detail {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: calc(100% - 200rpx);
+  font-size: 28rpx;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.content>.coatchview{
+  margin: 20rpx;
+}

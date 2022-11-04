@@ -1,0 +1,35 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">充值</view>
+</cu-custom>
+
+<view class="cu-card case ">
+  <view class="cu-item shadow bg-gradual-orange cardradus">
+    <view class="image" bindtap="detail">
+      <image src="https://6d61-mallforgym-i8imy-1300202136.tcb.qcloud.la/dramapop-01.png" mode="widthFix"></image>
+      <view class="cu-bar flex justify-end align-start" style='height: 90%;'>
+        <view class="padding-xs flex align-start">
+          <view class="flex-sub text-center">
+            <view class="solid-bottom text-xxl padding-xs">
+              <text class="text-price text-xsl">{{amount}}</text>
+            </view>
+            <view class="padding">当前账户余额</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="padding-xl">
+  <text class="text-grey text-xxl">充值金额</text>
+</view>
+
+<view class="grid col-3 padding-sm">
+  <view class="margin-tb-sm text-center" wx:for="{{6}}" wx:key='index'>
+    <button bindtap='selectCharge' data-id="{{index}}" class="{{selected == index ?'bg-orange':'line-orange'}} cu-btn round lg btn-width">{{(item+1) * 50}}</button>
+  </view>
+</view>
+
+<view class="padding-xl flex flex-direction">
+  <button bindtap="charge" class="cu-btn bg-gradual-orange round lg">确认充值</button>
+</view>

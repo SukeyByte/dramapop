@@ -1,0 +1,30 @@
+<wxs src="../../../../util/dataOption.wxs" module="tools"></wxs>
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">健身房列表</view>
+</cu-custom>
+
+<view class="gym-card case">
+  <view class="gym-item shadow" wx:for="{{sellerList}}" wx:key="index">
+    <view class="buycard image" bindtap="toDetail" data-id="{{item._id}}">
+      <image mode="aspectFill" src='{{item.logoimg}}'>
+      </image>
+      <view class="cu-bar bg-shadeBottom-msk">
+        <view class="text-center text-xl">
+          <text>健身房  {{item.name}}</text>
+        </view>
+        <view class="text-center">
+          <text>距离你 {{tools.numberToFix(item.distance)}}米</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="text-center text-gray">
+底线提示：可点击健身房查看具体信息
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

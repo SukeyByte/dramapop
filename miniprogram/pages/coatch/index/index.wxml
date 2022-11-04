@@ -1,0 +1,13 @@
+<index wx:if="{{PageCur=='index'}}" pageCode="{{pageCode}}"></index>
+<date wx:if="{{PageCur=='date'}}" pageCode="{{pageCode}}"></date>
+<my wx:if="{{PageCur=='my'}}" pageCode="{{pageCode}}"></my>
+<stu wx:if="{{PageCur=='stu'}}" pageCode="{{pageCode}}"></stu>
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" wx:for="{{dataList}}" wx:key="index" bindtap="NavChange" data-cur="{{item.name}}">
+    <view class="{{item.footIcon}} {{item.name == PageCur?'text-orange':'text-gray'}}">
+
+    </view>
+    <view wx:if="{{item.showName}}" class="{{item.name == PageCur?'text-orange':'text-gray'}}">{{item.footCode}}</view>
+  </view>
+</view>

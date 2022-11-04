@@ -1,0 +1,17 @@
+@import "../../../colorui/animation.wxss";
+.btn{
+  border-radius: 50%;
+  width: 340rpx;
+  height: 340rpx;
+  text-align: center;
+  font-size:70rpx;
+}
+
+.ewm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 680rpx;
+  margin: 0rpx auto;
+}

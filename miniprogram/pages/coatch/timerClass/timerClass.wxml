@@ -1,0 +1,27 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">定时课程</view>
+</cu-custom>
+
+<view class="flex bg-white text-center">
+  <view class="padding flex-twice">授课时间</view>
+  <view class="padding flex-sub">类型</view>
+  <view class="padding flex-sub">定价</view>
+  <view class="padding flex-sub">操作</view>
+</view>
+
+<view class="flex bg-white text-center" wx:for="{{classList}}" wx:key="index" data-id="{{item.id}}">
+  <view class="padding flex-twice">{{item.startTime}}-{{item.endTime}}</view>
+  <view class="padding flex-sub">
+    <view class="cu-tag round {{item.type == 1?'line-cyan':item.type == 2?'line-orange':'line-pink'}}">
+      {{item.type == 1?'私教':item.type == 2?'团课':'拼团私教'}}</view>
+  </view>
+  <view class="padding flex-sub text-price">{{item.price}}</view>
+  <view class="flex-sub">
+    <view class="cu-btn line-orange round" bindtap="deleteClass" data-id="{{item.id}}">删除</view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

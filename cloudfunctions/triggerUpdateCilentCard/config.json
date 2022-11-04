@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": [
+    ]
+  },
+  "triggers": [
+    {
+      "name": "updateClientCard",
+      "type": "timer",
+      "config": "0 0 10,16 * * * *"
+    }
+  ]
+}

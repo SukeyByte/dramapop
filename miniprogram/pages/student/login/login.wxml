@@ -1,0 +1,43 @@
+<cu-custom bgColor="bg-white">
+  <view slot="content">登陆</view>
+</cu-custom>
+<view>
+  <view class='header'>
+    <view class="userinfo-avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+  </view>
+  <view class='content'>
+    <view>申请获取以下权限</view>
+    <text>获得您的公开信息(昵称，头像，电话号码等)</text>
+  </view>
+  <view wx:if="{{inputnumber}}" class="padding flex flex-direction">
+    <button wx:if="{{needNumber}}" class="cu-btn bg-gradual-orange lg" type='primary' lang="zh_CN" bindtap="getUserInfo">
+      授权登录
+    </button>
+    <button wx:else class="cu-btn bg-gradual-orange lg" type='primary' open-type="getPhoneNumber" lang="zh_CN" bindgetphonenumber="getPhoneNumber">
+      授权手机号
+    </button>
+    <button class="cu-btn bg-grey lg margin-top" bindtap="cancel">
+      取消
+    </button>
+  </view>
+  <view wx:else class="padding flex flex-direction">
+    <view class="cu-bar " style="top:{{CustomBar}}px;">
+      <view class="search-form round bg-white shadow">
+        <input bindinput="inputnumber" value="{{mobile}}" type="number" placeholder="   请输入手机号码" confirm-type="search"></input>
+      </view>
+    </view>
+    <button class="cu-btn bg-gradual-orange lg" type='primary' lang="zh_CN" bindtap="confirm">
+      确认
+    </button>
+    <button class="cu-btn bg-grey lg margin-top" bindtap="cancel">
+      取消
+    </button>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

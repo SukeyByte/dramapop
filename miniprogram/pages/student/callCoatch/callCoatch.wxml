@@ -1,0 +1,72 @@
+<cu-custom bgColor="bg-white" isCustom="{{false}}">
+  <view slot="content">咔咔开练</view>
+</cu-custom>
+<map id="map" scale="11" markers="{{markers}}" bindmarkertap="markertap" show-location longitude='{{centerX}}'
+  latitude='{{centerY}}' class='mapv'>
+</map>
+
+<view class="padding" wx:if="{{isFinding}}">
+  <view class='flex-sub text-center'>
+    <text class="text-xxl text-black ">寻找教练中..</text>
+  </view>
+</view>
+<view class="" wx:if="{{isFinding}}">
+  <view class='loader'></view>
+</view>
+
+
+<view class="padding bg-white radius shadow shadow-lg" wx:else>
+  <view class="cu-list menu">
+    <view class="cu-form-group" wx:if="{{index==0}}">
+      <view class="title">指定健身房</view>
+      <picker bindchange="openSellerChange" value="{{sellerIndex}}" range="{{sellerNameList}}">
+        <view class="picker">
+          {{sellerList[sellerIndex].name}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-item">
+      <view class="content">
+        <text class="text-black">预计 </text>
+        <text class="text-red text-xxl">{{needmoeny}}</text>
+        <text class="text-red">元</text>
+        <text class="margin-left text-gray"></text>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">开始时间</view>
+      <picker mode="time" value="{{starttime}}" start="09:00" end="23:00" bindchange="startTimeChange">
+        <view class="picker">
+          {{starttime}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">结束时间</view>
+      <picker mode="time" value="{{endtime}}" start="09:00" end="23:00" bindchange="endTimeChange">
+        <view class="picker">
+          {{endtime}}
+        </view>
+      </picker>
+    </view>
+    <view class="padding flex flex-direction">
+      <button bindtap="order" class="cu-btn bg-orange lg">预约</button>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>
+
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>
+
+<view class="cu-modal bottom-modal justify-end {{showpay?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog basis-lg" catchtap
+    style="top:{{CustomBar}}px;height:calc(70vh - {{CustomBar}}px);border-radius:24rpx;">
+    <payc id="payc" price="{{needmoeny}}" useType='1' payType = '1' title='{{classname}}' itemCode='HJ' itemId='{{itemId}}' bindpaymevent='paymevent'>
+    </payc>
+  </view>
+</view>

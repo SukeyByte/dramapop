@@ -1,0 +1,84 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showES6CompileOption": false
+  },
+  "appid": "wx33ce179423c9f1a0",
+  "projectname": "malls",
+  "libVersion": "2.19.2",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "compileType": "miniprogram",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/student/coatchdetailpages/coatchdetailpages",
+          "pathName": "pages/student/coatchdetailpages/coatchdetailpages",
+          "query": "id=oceoc5FifaKYmsjm7cenRk8jUD2I",
+          "scene": null
+        },
+        {
+          "name": "pages/coatch/targetclasses/targetclasses",
+          "pathName": "pages/coatch/targetclasses/targetclasses",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/student/mine/training/training",
+          "pathName": "pages/student/mine/training/training",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/student/index/Index",
+          "pathName": "pages/student/index/Index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

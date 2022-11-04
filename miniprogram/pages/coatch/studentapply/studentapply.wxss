@@ -1,0 +1,17 @@
+ .card-row {
+ 	display: flex;
+ }
+
+ .caro-row-one {
+ 	flex: 1;
+ }
+
+ .caro-row-span {
+ 	flex: auto;
+ 	flex-shrink: 0
+ }
+
+ .confirmbtn-view {
+ 	border-top: 1px solid var(--gray);
+ 	padding-top: 13rpx;
+ }

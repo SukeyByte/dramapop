@@ -1,0 +1,46 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">我的课程包</view>
+</cu-custom>
+
+<view wx:if='{{packageList.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">还没有选课呢~</text>
+  </view>
+</view>
+
+<view class="cu-list menu ">
+  <view class="cu-item" wx:for="{{packageList}}" wx:key='index'>
+    <view class>
+      <view class="content padding-tb-sm">
+        <view>
+          {{item.name}}
+          <text class="cu-tag line-red round margin-left" wx:if="{{item.status == 0}}">未打开</text>
+          <text class="cu-tag line-orange round margin-left" wx:if="{{item.status == 1}}">已打开</text>
+          <text class="cu-tag line-green round margin-left" wx:if="{{item.status == 2}}">已购买</text>
+        </view>
+        <view class="">
+          <text class="margin-right-xs">预计课程数：{{item.number}}节私教课</text>
+        </view>
+        <view>
+          总金额：<text class="text-price text-red margin-right-xs">{{item.total}}</text>
+          课单价：<text class="text-price text-red margin-right-xs">{{item.total/item.number}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-orange round" open-type="share" bindtap="shareClass" data-item="{{item}}"
+        wx:if="{{item.status == 0}}">
+        分享
+      </button>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

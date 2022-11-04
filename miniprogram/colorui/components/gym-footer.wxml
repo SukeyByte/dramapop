@@ -1,0 +1,9 @@
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" wx:for="{{navFoot}}" wx:key="*this" data-index="{{index}}"
+    data-cur="{{item.navUrl}}" data-name="{{item.name}}" data-select="{{item.isSelect}}">
+    <view class="{{item.footIcon}} {{item.isSelect?'text-orange':'text-gray'}}">
+
+    </view>
+    <view wx:if="{{item.showName}}" class="{{item.isSelect?'text-orange':'text-gray'}}">{{item.footCode}}</view>
+  </view>
+</view>

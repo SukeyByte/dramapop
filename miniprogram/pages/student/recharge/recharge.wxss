@@ -1,0 +1,7 @@
+.btn-width{
+  width: 150rpx;
+}
+
+.cardradus{
+  border-radius: 24rpx;
+}

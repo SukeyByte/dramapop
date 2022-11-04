@@ -1,0 +1,108 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{pageCode.index001}}</view>
+</cu-custom>
+<!-- 商品详情 -->
+<view class="cu-bar bg-white solid-bottom {{isCard?'margin-top':''}}">
+  <view class='action'>
+    <text class='cuIcon-titles text-orange '></text> {{itemName}}
+  </view>
+  <view class='action'>
+  </view>
+</view>
+<scroll-view scroll-y scroll-with-animation lower-threshold="10" scroll-top="10" bindscrolltolower="scrollToLower" style="height:calc(80vh - 75rpx)">
+  <view class="cu-card dynamic margin-bottom-xl">
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url({{avatarUrl}});"></view>
+          <view class="content flex-sub">
+            <view>{{userName}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{createDate}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="text-content">
+        {{datails}}
+      </view>
+
+      <swiper class="card-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item wx:for="{{images}}" class="{{cardCur==index?'cur':''}}">
+          <image src="{{item}}" mode="aspectFill" lazy-load="true"></image>
+        </swiper-item>
+      </swiper>
+      <view class="text-gray text-sm text-right padding">
+        <text class="cuIcon-attentionfill margin-lr-xs"></text> {{read}}
+        <text bindtap="commandTap" class="cuIcon-appreciatefill margin-lr-xs {{isCommand?'text-red':''}}"></text> {{command}}
+        <text class="cuIcon-messagefill margin-lr-xs"></text> {{commit}}
+      </view>
+
+      <view class="flex  p-xs margin-bottom-sm mb-sm">
+        <view class="action">
+          <view class="flex-sub bg-white padding-sm margin-xs radius">
+            <view class="cu-avatar-group" wx:for="{{joinList}}">
+              <view class="cu-avatar round sm" style="background-image:url({{item.userInfo.avatarUrl}});"></view>
+            </view>
+            <text class="text-grey text-sm">{{pageCode.index002}}{{joincount}} {{pageCode.index003}}</text>
+          </view>
+        </view>
+
+      </view>
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="action">
+          <text class="text text-sm">{{pageCode.index004}}</text>
+          <text class="text-price text-red text-xxl">{{price}}</text>
+        </view>
+      </view>
+      <view class="cu-bar bg-white solid-bottom">
+        <view class="action">
+          <text class="cuIcon-creativefill text-orange "></text> tips：{{pageCode.index005}}
+        </view>
+      </view>
+      <view wx:for="{{rules}}" wx:key="{{index}}">
+        <view class="cu-bar bg-white solid-bottom margin-top">
+          <text class="text-orange ">{{pageCode.index006}}</text>
+          <text>{{item.minpeople}}人</text>
+          <text class="text-orange ">{{pageCode.index007}}</text>
+          <text>{{item.maxpeople}}人</text>
+          <text class="text-orange ">{{pageCode.index008}}</text>
+          <text class="text-price text-red">{{item.money}}</text>
+        </view>
+      </view>
+
+      <view class="cu-list menu-avatar comment solids-top">
+        <view class="cu-item" wx:for="{{messageList}}">
+          <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+          <view class="content">
+            <view class="text-grey">{{item.userName}}</view>
+            <view class="text-gray text-content text-df">
+              {{item.message}}
+            </view>
+            <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:for="{{item.childrenMessage}}" wx:for-item="childItem" wx:key>
+              <view class="flex">
+                <view>{{childItem.userName}}: </view>
+                <view class="flex-sub">{{childItem.message}}</view>
+              </view>
+            </view>
+            <view class="margin-top-sm flex justify-between">
+              <view class="text-gray text-df">{{item.createDate}}</view>
+              <view>
+                <text class="cuIcon-messagefill text-gray margin-left-sm" bindtap="repeat" data-id="{{item._id}}" data-repeatuser="{{item.userId}}" data-repeatname="{{item.userName}}" data-index="{{index}}"></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>
+<view class="cu-bar input foot box" wx:if="{{status==1}}">
+  <input bindblur="{{messageblur}}" focus="{{repeatfocus}}" bindinput="messageinput" class="solid-bottom" maxlength="300" value="{{message}}" cursor-spacing="10"></input>
+
+    <button formType="submit" bindtap="sendMessage" class="cu-btn bg-orange shadow-blur">{{pageCode.index009}}</button>             
+ 
+
+    <button formType="submit" bindtap="joinInBuy" class="cu-btn bg-red margin-left shadow-blur">{{pageCode.index010}}</button>                  <!-- bindtap="joinInBuy" setMessage  -->
+</view>

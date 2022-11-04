@@ -1,0 +1,31 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{pageCode.index001}}</view><!-- 选择地址 -->
+</cu-custom>
+
+<radio-group class="block">
+  <view class="padding-lr bg-white margin-top" wx:for="{{locate}}" wx:key>
+    <view class="solid-bottom padding">
+      <text class="text-xl">{{item.name}}</text>
+      <text class="text-s margin-left">{{item.number}}</text>
+    </view>
+    <view class="padding">{{item.region}}</view>
+    <view class="padding">{{item.locate}}</view>
+    <view class="padding">
+      <radio bindtap="ChangeSelect" data-item="{{item}}" class="red margin-left-sm">
+      </radio>
+      <view class="padding">
+        <button bindtap="deleteItem" data-item="{{item}}" class="cu-btn lines-orange shadow round btn">{{pageCode.index002}}</button>
+      </view>
+    </view>
+  </view>
+</radio-group>
+
+  <view class="padding flex flex-direction">
+    <button formType="submit" bindtap="addNewLocal" class="cu-btn lines-olive lg shadow round btn">{{pageCode.index003}}</button>
+  </view>
+
+
+
+  <view class="padding flex flex-direction">
+    <button formType="submit" bindtap="Confirm" class="cu-btn bg-gradual-orange round lg btn">{{pageCode.index004}}</button>
+  </view>

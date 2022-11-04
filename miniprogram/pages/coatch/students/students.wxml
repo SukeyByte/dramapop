@@ -1,0 +1,40 @@
+<cu-custom isCustom="{{false}}" bgColor="bg-white">
+  <view slot="content">学员管理</view>
+</cu-custom>
+
+<view class="start" wx:if="{{studentlist.length == 0}}">
+  <view>您可能还没有学员关系在本系统的记录中</view>
+  <view>如果已经有学员约过您的课，请点击下面的按钮</view>
+  <view>
+    <button class="cu-btn round sm bg-orange" bindtap="startsync">同步学员信息</button>
+  </view>
+</view>
+
+<view class="grid col-3 no-border" wx:else>
+  <view class="" wx:for="{{studentlist}}" wx:key="index">
+    <view class="userBlock shadow-warp bg-white">
+      <view>
+        {{item.name}}
+      </view>
+      <view class="userImage shadow-warp">
+        <image class="userHeader "
+          src="{{item.url}}">
+        </image>
+      </view>
+      <view>
+        <button class="cu-btn round sm bg-orange" bindtap="makecall" data-phone='{{item.phonenumber}}'>联系学员</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar  margin-bottom">
+  <view class="action">
+
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

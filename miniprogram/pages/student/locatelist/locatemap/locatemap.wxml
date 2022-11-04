@@ -1,0 +1,40 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">附近的健身房</view>
+</cu-custom>
+<map id="map" scale="15" markers="{{markers}}" bindmarkertap="markertap" show-location longitude='{{centerX}}'
+  latitude='{{centerY}}' class='mapv'>
+</map>
+<view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索健身房名称" confirm-type="search"  bindinput="bindSearchInput" bindconfirm="searchData"
+        value="{{searchKeyWord}}"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow-blur round" bindtap="searchData">搜索</button>
+    </view>
+  </view>
+<scroll-view scroll-y="true" scroll-x="false" class="" style="height:34vh">
+  <view class="cu-list menu">
+    <view class="cu-item" wx:for="{{sellerList}}" wx:key='index' data-item="{{item}}" bindtap="selectLocate">
+      <view class="cu-avatar radius lg margin-right"
+        style="background-image:url({{item.logoimg}});"></view>
+      <view class="content">
+        <view class="text-green">
+          <text class="text-cut">{{item.name}}</text>
+        </view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">{{item.city}} {{item.city}} {{item.addressName}}</text>
+        </view>
+      </view>
+      <view class="action" bindtap="selectItem" data-item="{{item}}">
+        <view class="line-orange text-xs cu-btn round" >选择</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

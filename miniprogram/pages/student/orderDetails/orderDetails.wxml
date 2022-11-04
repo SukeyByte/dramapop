@@ -1,0 +1,21 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{pageCode.index001}}</view><!-- 我的订单 -->
+</cu-custom>
+
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-item" data-id="{{item.order}}"  bindtap="jumptoDetai" wx:for="{{list}}" wx:key>
+    <view class="flex  p-xs mb-sm">
+      <view class="action">
+        <text class="text-grey"> {{pageCode.index002}}{{item.createTime}}{{pageCode.index003}}  </text>
+        <text class="text-grey"> {{item.title}} </text>
+        <text class="text-grey"> {{pageCode.index004}}  </text>
+        <text class="text-grey"> {{item.order}} </text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

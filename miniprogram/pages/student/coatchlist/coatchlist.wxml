@@ -1,0 +1,48 @@
+<wxs src="../../../util/dataOption.wxs" module="tools"></wxs>
+
+<cu-custom isCustom="{{false}}" bgColor="bg-white">
+  <view slot="content" class="cuIcon-hot">教练</view>
+</cu-custom>
+<view class="box">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索教练" confirm-type="search" bindinput="bindSearchInput" bindconfirm="searchCoatch"
+        value="{{searchKeyWord}}"></input>
+    </view>
+  </view>
+</view>
+<view class='item' data-index='{{index}}'>
+  <view class="gym-list menu-avatar " style="display: grid;" data-index="{{index}}" wx:for="{{coatchlist}}"
+    wx:key="index">
+    <view class="gym-item shadow-warp" bindtap="selectCoatch" data-id="{{item._openid}}" data-name="{{item.name}}">
+      <view class="lg">
+        <image src="{{item.image[0]}}" mode="aspectFill" lazy-load="true"></image>
+      </view>
+      <view class="flex-twice content padding-xs">
+        <view class="className coatchview text-xl">
+          <block wx:for="{{tools.split(item.name)}}" wx:for-item="key" wx:key="name">
+            <text class=" {{tools.fn(tools.split(searchKeyWord), key).indexOf?'text-red':''}}">{{key}}</text>
+          </block>教练
+          <view wx:if="{{item.iscooperation == 1}}" class="cu-tag line-orange lg margin-left">合作教练</view>
+        </view>
+        <view class="text-sm coatchview detail" style="width: calc(100% - 180rpx);">{{item.detail}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="cu-bar margin-top">
+  <view class="action">
+
+  </view>
+</view>
+
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

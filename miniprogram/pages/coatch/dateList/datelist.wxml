@@ -1,0 +1,132 @@
+<cu-custom bgColor="bg-white">
+  <view slot="content">{{pageCode.time001}}</view>
+</cu-custom>
+
+<view class="cu-form-group margin-top">
+  <view class="title">{{pageCode.time002}}</view>
+  <switch bindchange="switchChange" checked="{{repeat}}"></switch>
+</view>
+
+<view class="cu-form-group margin-top">
+  <view class="">
+    <button bindtap="cancelSelect" class="cu-btn bg-red round lg shadow button-hover">
+      取消所选
+    </button>
+  </view>
+  <view>
+    <button bindtap="confirmSelect" class="cu-btn bg-green round lg shadow button-hover">
+      确认选择
+    </button>
+  </view>
+</view>
+
+<scroll-view scroll-x="true" class='scrollClass'>
+  <view class='cell-table'>
+    <view class='cell-table_header'>
+      <view class="th">
+        <view class='cell_label'></view>
+      </view>
+      <block wx:for="{{dateArray}}" wx:key="index">
+        <view class='th'>
+          <view class="cell_label centerclass">{{item.date_text}}</view>
+          <view class="cell_date_label centerclass">{{item.weekName}}</view>
+        </view>
+      </block>
+    </view>
+
+    <block wx:for="{{noonList}}" wx:key="index" wx:for-index="parentIndex" wx:if='{{item.Value}}'>
+      <view class='cell-table_main'>
+        <view class='td' style='background-color:white;'>
+          <view class="cell_label centerclass">{{item.NoonName}}</view>
+        </view>
+        <block wx:key="index" wx:for="{{item.list}}" wx:for-item="trade" wx:for-index="ind">
+          <view class='td bg-{{trade.color}}' wx:if='{{trade.keyue}}' bindtap='selecttb'
+            data-date="{{trade.date}}~{{item.NoonName}}" data-index="{{parentIndex}}~{{ind}}" data-id="{{trade._id}}"
+            data-item="{{trade}}">
+            <view class="cuIcon-roundcheck lg text-green" wx:if="{{trade.select}}"></view>
+            <view class='bg-{{trade.color}} celltext text-cut' wx:else>{{trade.name}}</view>
+            <view class='bg-{{trade.color}} celltext text-cut'>
+              ({{trade.repeat?'重复':'单次'}}){{trade.showtype+"/"+trade.total}}</view>
+          </view>
+          <view class='td' wx:else bindtap='selecttb' data-date="{{trade.date}}~{{item.NoonName}}"
+            data-index="{{parentIndex}}~{{ind}}">
+            <view class='cell-table_empty"'>
+              <view class="cuIcon-roundcheck lg text-green" wx:if="{{trade.select}}"></view>
+            </view>
+          </view>
+        </block>
+
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<view class='margin-top bg-white radius'>
+  <view class='text-center margin-bottom text-lg  text-grey'>{{pageCode.time003}}</view>
+  <view class='text-content'>
+    <view>{{pageCode.time004}}</view>
+    <view class='margin-top-sm'>{{pageCode.time005}}</view>
+    <view class='margin-top-sm'>{{pageCode.time006}}</view>
+    <view class='margin-top-sm'>{{pageCode.time007}}</view>
+    <view class='margin-top-sm'>{{pageCode.time008}}</view>
+  </view>
+</view>
+
+<view class="cu-bar  margin-bottom">
+  <view class="action">
+
+  </view>
+</view>
+
+<view class="cu-modal {{showModel?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">{{modelTitle}}</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <!-- 新增排课 -->
+      <view class="content xl text-bold margin-bottom">{{pageCode.time009}}</view>
+      <form>
+        <view class="cu-form-group">
+          <view class="title">{{pageCode.time010}}</view>
+          <input bindinput="classNameInput" value="{{className}}"></input>
+        </view>
+        <view class="cu-form-group margin-top">
+          <view class="title">{{checkedSingle?pageCode.time012:pageCode.time019}}</view>
+          <switch bindchange="changeType" checked="{{checkedSingle}}"></switch>
+        </view>
+        <view wx:if="{{checkedSingle}}" class="cu-form-group margin-top">
+          <view class="title">{{pageCode.time016}}</view>
+          <switch bindchange="changeSpell" checked="{{checkedSpell}}"></switch>
+        </view>
+        <view wx:if="{{!checkedSingle || checkedSpell}}">
+          <view class="cu-form-group">
+            <view class="title">{{checkedSingle?pageCode.time012:pageCode.time019}}{{pageCode.time013}}</view>
+            <input type="number" bindinput="maxPeopleInput" value="{{maxNumber}}"></input>
+          </view>
+        </view>
+        <view>
+          <view class="cu-form-group">
+            <view class="title">{{pageCode.time017}}</view>
+            <input type="number" bindinput="priceInput" value="{{price}}"></input>
+          </view>
+        </view>
+      </form>
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn bg-red margin-left" bindtap="deleteClass">{{pageCode.time015}}</button>
+        <button class="cu-btn bg-green margin-left" bindtap="saveClass">{{pageCode.time014}}</button>
+
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

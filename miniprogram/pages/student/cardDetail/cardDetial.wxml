@@ -1,0 +1,67 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">卡片购买</view>
+</cu-custom>
+
+<view class="area">
+  <view class="locate text-white text-xl">
+    <text class="cuIcon-location"></text>健身房——{{locatename}}
+  </view>
+  <view class="titleInfo">
+    <view class="disc">卡片名称</view>
+    <view class="cardName">{{cardDetail.name}}</view>
+    <view class="detail">{{cardDetail.detail}}</view>
+  </view>
+  <view class="tagdetail">
+    <view class="title">消费类型</view>
+    <view class="right cu-tag bg-orange text-lg">仅限{{cardDetail.useType === '1' ? '私教' : '场地'}}使用</view>
+    <!-- <view class="right cu-tag bg-cyan text-lg">{{cardDetail.type === '1' ? '时间' : '次数'}}</view> -->
+    <view class="right cu-tag line-cyan text-lg">可用{{cardDetail.totalCounts}}{{cardDetail.type === '1' ? '月' : '次'}}
+    </view>
+  </view>
+
+  <swiper class="screen-swiper square-dot bg-white" indicator-dots="true" circular="true" autoplay="true"
+    interval="5000" duration="500">
+    <swiper-item wx:for="{{cardDetail.detailImg}}" data-url="{{item.tempFileURL}}" bindtap="ViewImage" wx:key='index'>
+      <image class="radius-image" src="{{item.tempFileURL}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+</view>
+
+<view class="cu-bar solid-bottom">
+  <view class="action">
+
+  </view>
+</view>
+
+<view class="foot cu-bar bg-white">
+  <view class="solids-bottom flex-sub">
+    <view class="cu-bar bg-white solid-top tabbar border shop">
+      <text class="text-black text-bold margin-left">{{cardType}}</text>
+      <view class="action">
+        <view class="solid-bottom text-xxl">
+          <text class="text-price text-red">{{cardDetail.money}}</text>
+        </view>
+      </view>
+      <view class="btn-group margin-left">
+        <button bindtap="buy" class="cu-btn bg-red round shadow-blur">确认购买</button>
+        <button class="cu-btn bg-red round shadow-blur" open-type="contact">
+          咨询客服
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>
+
+<view class="cu-modal bottom-modal justify-end {{showpay?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog basis-lg" catchtap
+    style="top:{{CustomBar}}px;height:calc(70vh - {{CustomBar}}px);border-radius:24rpx;">
+    <payc price="{{cardcost}}" id="payc" useType='0' payType='2' title='{{cardDetail.name}}'  itemId='{{cardDetail._id}}' bindpaymevent='paymevent'>
+    </payc>
+  </view>
+</view>

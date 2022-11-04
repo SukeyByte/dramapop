@@ -1,0 +1,35 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">开始运动</view>
+</cu-custom>
+
+<view>
+  <view class="padding-xl text-center">
+    <text class="text-grey text-xxl">请向店员出示二维码</text>
+  </view>
+  <view id="container">
+    <view class="ewm">
+      <canvas style="width: 600rpx; height: 600rpx;" canvas-id="myQrcode"></canvas>
+    </view>
+  </view>
+
+  <view class="padding-xl text-center" wx:if='{{!isStarted}}'>
+    <text class="text-grey text-xxl">扫码开始运动</text>
+  </view>
+  <view class="text-center" wx:if='{{!isStarted}}'>
+    <text class="text-grey">
+      现在开始运动两小时预计需要{{twoHourMoney}}元
+    </text>
+  </view>
+
+  <view class="padding-xl text-center" wx:if='{{isStarted}}'>
+    <text class="text-grey text-xxl">当前运动时间</text>
+  </view>
+  <view class="padding-xl text-center" wx:if='{{isStarted}}'>
+    <text class="text-red text-xxl">{{timecount}}</text>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

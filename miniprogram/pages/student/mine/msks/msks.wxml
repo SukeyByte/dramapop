@@ -1,0 +1,40 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">我的优惠券</view>
+</cu-custom>
+
+<view wx:if='{{msklist.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">啊哦~没有优惠券呢</text>
+  </view>
+</view>
+
+<view class="padding" wx:for="{{msklist}}" wx:key='index'>
+  <view class="wrapper">
+    <view class="msk">
+      <view class="coupon-top text-price text-xsl text-white">
+        {{item.price}}
+      </view>
+      <view class="coupon-middle text-white">
+        {{item.name}}
+      </view>
+      <view class="coupon-bottom text-white">
+        有效期：{{item.begTime}}-{{item.endTime}}
+      </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="tip ">
+        <button open-type="share" class='cu-btn round lg margin-top line-white text-xl cuIcon-share' 
+        bindtap="shareMsk" data-item="{{item}}">
+        </button>        
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

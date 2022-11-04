@@ -1,0 +1,20 @@
+{
+  "name": "wechat_pay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "request": "^2.88.0",
+    "tenpay": "^2.1.18",
+    "wx-server-sdk": "latest",
+    "xml2js": "^0.4.19",
+    "xmlreader": "^0.2.3"
+  }
+}

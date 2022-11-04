@@ -1,0 +1,66 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">我的卡片</view>
+</cu-custom>
+
+<view wx:if='{{cardlists.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">您还没购买会员卡哦</text>
+  </view>
+</view>
+
+<view wx:else class="gym-card case">
+  <view class="gym-item shadow {{item._id==buyId?'selectborder':''}}" wx:for="{{cardlists}}" wx:key="index">
+    <view class="buycard image" bindlongpress="stopCard" bindtap="activation" data-id="{{item._id}}"
+      data-status="{{item.status}}" data-stoptimes="{{item.stopCounts}}" data-item="{{item}}" data-index="{{index}}">
+      <image mode="aspectFill" class="{{item.overtime == true?'gray-img':''}}"
+        src='{{item.buyCardInfo.detailImg[0].tempFileURL}}'>
+      </image>
+      <view class="cu-tag bg-green" wx:if="{{item.status == 0}}">未激活</view>
+      <view class="cu-tag bg-blue" wx:if="{{item.status == 1}}">已激活</view>
+      <view class="cu-tag bg-red" wx:if="{{item.status == 3}}">已停卡</view>
+      <view class="cu-bar bg-shadeBottom-msk">
+        <view class="flex-sub text-center">
+          <view class="padding" wx:if="{{item.status==0}}">
+            <view class="bg-blue">可点击激活</view>
+          </view>
+          <view class="padding">
+            <text wx:if="{{item.type==0}}"> 剩余使用次数：{{item.totalCounts}}</text>
+            <view wx:else>
+              <text>有效时间:{{item.totalCounts}}个月</text>
+              <view>上次变更:{{item.lastupdateTime}}</view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="text-center padding text-grey">可长按办理半年卡，年卡停卡</view>
+</view>
+
+<view class="cu-modal {{showModel?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">停卡设置</view>
+    </view>
+    <view class="padding-xl">
+      从现在开始，将对您的卡片免费
+    </view>
+    <view class="padding-xl">
+      半年卡停卡5天，年卡停卡10天
+    </view>
+    <view class="padding-xl">
+      到期后可手动进行再次停卡，停卡次数共计3次
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn bg-red margin-left" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="saveStopCard">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

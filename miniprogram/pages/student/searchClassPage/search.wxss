@@ -1,0 +1,9 @@
+.className{
+  margin-left: 15rpx;
+}
+
+.imagesize {
+  margin-top: 10%;
+  width: 46%;
+  height: 80%;
+}

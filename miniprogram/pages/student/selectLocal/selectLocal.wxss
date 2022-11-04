@@ -1,0 +1,11 @@
+.btn {
+ min-width: 600rpx
+}
+
+button::after {
+  border: none;
+}
+
+.trans{
+  background: transparent
+}

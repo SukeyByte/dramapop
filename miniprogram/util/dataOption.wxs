@@ -1,0 +1,23 @@
+function fn(arr, arg) {
+  var result = {
+    indexOf: false,
+    toString: ''
+  }
+  result.indexOf = arr.indexOf(arg) > -1;
+  result.toString = arr.join(","); 
+  return result;
+}
+function split(arr, arg) {
+  var result = arr.split("")
+  return result
+}
+
+function numberToFix(value) {
+  return value.toFixed(2)
+}
+
+module.exports={
+  fn:fn,
+  split:split,
+  numberToFix:numberToFix
+};

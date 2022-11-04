@@ -1,0 +1,49 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">购买课程卡</view>
+</cu-custom>
+
+<view class="padding">
+  <image class="padding-xl radius shadow shadow-lg margin-top"
+    src="https://6d61-mail-stg-oboxi-1300202136.tcb.qcloud.la/card/20210302000442.png"></image>
+</view>
+
+<view class="padding-xs margintext margin-xs">
+  <view class="flex align-center">
+    <view class="cuIcon-vipcard text-orange"></view>
+    <view class="text-lg">卡片名称</view>
+  </view>
+  <view class="text-xs margin-top-xs">{{name}}</view>
+</view>
+<view class="padding-xs margintext margin-xs">
+  <view class="flex align-center">
+    <view class="cuIcon-evaluate text-green"></view>
+    <view class="text-lg">授课购买</view>
+  </view>
+  <view class="text-xs margin-top-xs">本产品为指定私教卡片</view>
+  <view class="text-xs margin-top-xs">使用时仅可选择指定教练的课程</view>
+  <view class="text-xs margin-top-xs">请确保您已经和教练沟通后再进行购买</view>
+</view>
+<view class="padding-xs margintext margin-xs">
+  <view class="flex align-center">
+    <view class="cuIcon-moneybag text-red"></view>
+    <view class="text-lg">所需支付金钱</view>
+  </view>
+  <view class="text-xs margin-top-xs text-red text-price">{{total}}</view>
+  <view class="text-xs margin-top-xs">本产品暂不支持代金券或会员卡支付</view>
+</view>
+<view class="padding-xs margintext margin-xs">
+  <view class="flex align-center">
+    <view class="cuIcon-countdown text-blue"></view>
+    <view class="text-lg">课程节数</view>
+  </view>
+  <view class="text-xs margin-top-xs">{{count}}节私教课程</view>
+</view>
+
+<view class="padding flex justify-center margin-top">
+  <button bindtap="confirm" class="cu-btn bg-orange lg">确认购买</button>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

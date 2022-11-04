@@ -1,0 +1,5 @@
+.imagesize{
+  margin-top: 30%;
+  width: 46%;
+  height: 80%;
+}

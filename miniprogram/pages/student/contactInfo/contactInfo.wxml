@@ -1,0 +1,31 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{pageCode.index001}}</view>
+  <!--选择联系方式 -->
+</cu-custom>
+
+<radio-group class="block">
+  <view class="padding-lr bg-white margin-top" wx:for="{{locate}}" wx:key>
+    <view class="solid-bottom padding">
+      {{pageCode.index002}}<text class="text-xl margin-left">{{item.name}}</text>
+    </view>
+    <view class="padding">{{pageCode.index003}}<text class="text-s margin-left">{{item.number}}</text></view>
+    <view class="padding">{{pageCode.index004}}{{item.age}} <text class="text-s margin-left">{{pageCode.index005}}{{item.sex==1?"男":"女"}}</text></view>
+    <view class="padding">
+      <radio bindtap="ChangeSelect" data-item="{{item}}" class="red margin-left-sm">
+      </radio>
+    
+    </view>
+     <view class="padding">
+         <button bindtap="deleteItem" data-item="{{item}}" class="cu-btn lines-orange shadow round btn">{{pageCode.index006}}</button>
+    </view>    
+  </view>
+</radio-group>
+
+  <view class="padding flex flex-direction">
+    <button formType="submit" bindtap="addNewLocal" class="cu-btn lines-orange lg shadow round btn">{{pageCode.index007}}</button>
+  </view>
+
+
+  <view class="padding flex flex-direction">
+    <button formType="submit" bindtap="buy" class="cu-btn bg-gradual-orange round lg btn">{{pageCode.index008}}</button>
+  </view>

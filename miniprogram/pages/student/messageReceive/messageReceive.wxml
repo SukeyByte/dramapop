@@ -1,0 +1,22 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">留言消息</view>
+</cu-custom>
+
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-item arrow" data-id="{{item.itemId}}" data-type="{{item.type}}" bindtap="jumptoDetai" wx:for="{{list}}" wx:key>
+    <view class="flex  p-xs mb-sm">
+      <view class="action">
+
+        <text class="text-grey">  {{item.fromuserName}}  </text>
+        <text class="text-grey">  给您留言  </text>
+        <text class="text-grey"> {{item.message}} </text>
+
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="cu-bar input foot box">
+    <input bindblur="{{messageblur}}" focus="{{repeatfocus}}" bindinput="messageinput" class="solid-bottom" value="{{message}}" cursor-spacing="10"></input>
+    <button bindtap="sendMessage" class="cu-btn bg-orange shadow-blur">发送</button>
+  </view> -->

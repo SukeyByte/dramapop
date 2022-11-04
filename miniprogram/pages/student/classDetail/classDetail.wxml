@@ -1,0 +1,16 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{pageCode.index001}}</view><!-- 我的订单 -->
+</cu-custom>
+
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-item" data-id="{{item.order}}" data-number="{{item.detail.coatchInfo.number}}" bindtap="call" wx:for="{{list}}" wx:key>
+    <view class="flex p-xs mb-sm">
+      <view class="action">
+        <text class="text-grey"> {{pageCode.index002}} {{item.detail.coatchInfo.name}} {{pageCode.index007}} {{item.detail.date}}  {{item.detail.coatchTime}} {{pageCode.index003}} {{item.detail.name}} {{item.detail.showtype}}</text>
+        <text class="text-grey"> {{pageCode.index004}} </text>
+        <text class="text-blue"> {{item.detail.coatchInfo.number}}  </text>
+        <text class="text-grey"> {{pageCode.index006}} </text>
+      </view>
+    </view>
+  </view>
+</view>

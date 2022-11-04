@@ -1,0 +1,4 @@
+
+<view class='start-load load-modal fadenum'>
+  <view class='text-gray loading-txt'>Loading...</view>
+</view>

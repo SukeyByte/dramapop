@@ -1,0 +1,27 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">{{pageCode.index001}}</view><!-- 支付订单 -->
+</cu-custom>
+
+
+<view class=" margin-top padding-xs flex align-center">
+  <view class="flex-sub text-center">
+    <view class="text-xl padding">
+      <text class="text-black text-bold">{{pageCode.index002}}</text>
+    </view>
+  </view>
+</view>
+<view class=" padding-xs flex align-center">
+  <view class="flex-sub text-center">
+    <view class="text-xxl padding">
+      <text class="text-price text-red">{{payment}}</text>
+    </view>
+    <view class="padding">{{pageCode.index003}} {{title}}</view>
+    <view class="padding">{{pageCode.index004}}</view>
+  </view>
+</view>
+
+<view>
+  <!--插件示例页面useType 为卡片可使用类型 payType为订单表购买类型-->
+  <payc price="{{payment}}" id="{payc}" useType='0' payType='4' title='{{title}}' itemCode='YD'
+    foreignId='{{foreignId}}' bindpaymevent='paymevent'></payc>
+</view>

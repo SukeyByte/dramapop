@@ -1,0 +1,59 @@
+<wxs src="../../../util/dataOption.wxs" module="tools"></wxs>
+
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">搜索</view>
+</cu-custom>
+<view class="box">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索教练/课程名称" confirm-type="search" bindinput="bindSearchInput"
+        bindconfirm="searchCoatch" value="{{searchKeyWord}}"></input>
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{classes.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xl text-darkGray">抱歉，没有搜索到相应信息</text>
+  </view>
+</view>
+
+<view class="cu-list menu">
+  <view class="cu-item" wx:for="{{classes}}" wx:key="index">
+    <view class="content padding-tb-sm">
+      <view class="flex">
+        <view class="coatch flex cu-tag line-blue">
+          <view wx:for="{{tools.split(item.coatchInfo.name)}}" wx:for-item="key" wx:key="name">
+            <text class="{{tools.fn(tools.split(searchKeyWord), key).indexOf?'text-red':''}}">{{key}}</text>
+          </view>教练
+        </view>
+        <view class="className flex">
+          <view wx:for="{{tools.split(item.name)}}" wx:for-item="key" wx:key="name">
+            <text class="{{tools.fn(tools.split(searchKeyWord), key).indexOf?'text-red':''}}">{{key}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="text-gray">预计授课时间<text class="margin-right">{{item.date}} {{item.noonTime}}</text></view>
+      <view class="text-gray">报名金额<text class="margin-right">{{item.price}}元</text></view>
+    </view>
+    <view class="action">
+      <view wx:if="{{item.makeStatus==1}}" class="cu-tag round bg-orange lg" bindtap="toOrderDetails"
+        data-classid="{{item._id}}" data-item="{{item}}" data-id="{{item._openid}}" data-total="{{item.total}}">预约
+      </view>
+      <view wx:if="{{item.makeStatus==2}}" class="cu-tag round bg-orange lg" data-classid="{{item._id}}"
+        data-item="{{item}}" data-id="{{item._openid}}">已经预定</view>
+      <view wx:if="{{item.makeStatus==3}}" class="cu-tag round line-orange lg" data-classid="{{item._id}}"
+        data-item="{{item}}" data-id="{{item._openid}}">满员</view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

@@ -1,0 +1,112 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <view class="flex align-end solid-bottom padding justify-end">
+      <view class="flex-sub padding-sm margin-xs radius">
+        <view class="margin-top cu-avatar xl round margin-right" style="background-image:url({{avatarUrl}});"
+          mode="widthFix">
+        </view>
+      </view>
+      <view class="flex-treble padding-sm margin-xs radius">
+        <view wx:if='{{!isLogin}}' bindtap="login" class="loginbox lg margin-top margin-left">
+          <view class="padding-xs flex align-center">
+            <view class="flex-sub text-center">
+              <view class="text-xl padding">
+                <text class="text-bold">未登录</text>
+              </view>
+              <view class="padding margin-bottom-xl">点击此处可登陆</view>
+            </view>
+          </view>
+        </view>
+        <view wx:else class="loginbox lg margin-top margin-left">
+          <view class="padding flex align-center">
+            <view class="flex-sub text-left">
+              <view class="text-xl padding-sm">
+                <text class="">{{user.nickName}}</text>
+              </view>
+              <view class="padding-xs flex margin-bottom-xl">
+                <view class="flex-sub">
+                  <view class="padding-xs">可用余额 <text class="text-price">{{count}}</text>
+                  </view>
+                  <view class="padding-xs" style="margin-bottom:30rpx;">已购卡片 <text>{{cardNo}}</text> 张</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="cu-list grid col-3 card-menu margin-top no-border">
+    <view class="cu-item" bindtap="startPackage">
+      <navigator class="content" url="selectClass/selectClass">
+        <view class="cuIcon-list text-blue"></view>
+        <text class="text-grey">我的选课</text>
+      </navigator>
+    </view>
+    <view class="cu-item" bindtap="packageList">
+      <navigator class="content" url="training/training">
+        <view class="cuIcon-time text-green"></view>
+        <text class="text-grey">我的训练</text>
+      </navigator>
+    </view>
+    <view class="cu-item" bindtap="packageNeedKnow">
+      <navigator class="content" url="card/card">
+        <view class="cuIcon-card text-blue"></view>
+        <text class="text-grey">我的卡片</text>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <button class="cu-btn content" bindtap="charge">
+        <text class="cuIcon-refund text-red"></text>
+        <text class="text-grey">我要充值</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="payHistory/payHistory">
+        <text class="cuIcon-form text-olive"></text>
+        <text class="text-grey">我的订单</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="msks/msks">
+        <text class="cuIcon-present text-cyan"></text>
+        <text class="text-grey">我的优惠券</text>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-brown"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" bindtap="navToCoatch">
+        <text class="icon-gym text-yellow"></text>
+        <text class="text-grey">我是教练</text>
+      </button>
+    </view>
+    <view class="cu-item arrow ">
+      <button class="cu-btn content" bindtap="scanQrCode">
+        <text class="cuIcon-wenzi text-pink"></text>
+        <text class="text-grey">{{scantxt}}</text>
+      </button>
+    </view>
+    <view class="cu-item">
+      <view class="content text-center" bindtap="logout">
+        <text class="text-red">退出登陆</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-tabbar-height"></view>
+</scroll-view>
+
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>

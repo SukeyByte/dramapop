@@ -1,0 +1,49 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content" wx:if="{{title!=''}}">{{title}}教练的课程</view>
+</cu-custom>
+
+<view class="solids-bottom flex">
+  <view class="flex-twice" bindtap="ViewImage" data-url="{{coatchDetail.image[0]}}">
+    <view class="coatchName text-xl text-grey  text-center" wx:if="{{title!=''}}">{{coatchDetail.name}} 教练</view>
+    <view class="text-sm detail">{{coatchDetail.detail}}</view>
+    <view class="text-gray text-xs text-center ">点击可查看教练资质证书</view>
+  </view>
+  <view class="lg flex-sub">
+    <image src="{{coatchDetail.image[0]}}" mode="aspectFill" lazy-load="true"></image>
+    <view class="cu-tag bg-blue cu-tag-coatch" wx:if="{{coatchDetail.iscooperation == 1}}">合作教练</view>
+  </view>
+</view>
+
+<view wx:if='{{classes.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">暂时未安排课程</text>
+  </view>
+</view>
+
+<view class="cu-list menu">
+  <view class="cu-item" wx:for="{{classes}}" wx:key="index">
+    <view class="content padding-tb-sm">
+      <view class="className"><text class="cu-tag line-blue">{{item.showtype}}</text>  {{item.name}} </view>
+      <view class="text-gray">预计授课时间<text class="text-red margin-right">{{item.date}}  {{item.noonTime}}</text></view>
+      <view class="text-gray">报名金额<text class="text-red margin-right">{{item.price}}元</text></view>
+    </view>
+    <view class="action">
+      <view wx:if="{{item.makeStatus==1}}" class="cu-tag round bg-orange lg" bindtap="toOrderDetails"
+        data-classid="{{item._id}}" data-item="{{item}}" data-id="{{item._openid}}" data-total="{{item.total}}">预约
+      </view>
+      <view wx:if="{{item.makeStatus==2}}" class="cu-tag round bg-orange lg" data-classid="{{item._id}}"
+        data-item="{{item}}" data-id="{{item._openid}}">已经预定</view>
+      <view wx:if="{{item.makeStatus==3}}" class="cu-tag round line-orange lg" data-classid="{{item._id}}"
+        data-item="{{item}}" data-id="{{item._openid}}">满员</view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

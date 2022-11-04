@@ -1,0 +1,50 @@
+<view class='cu-custom'>
+  <view class="cu-bar fixed" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='content' style='top:{{StatusBar}}px;'></view>
+  </view>
+</view>
+
+<swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+  duration="500">
+  <swiper-item bindtap="tobanner" wx:for="{{bannerList}}" data-url="{{item.url}}" data-type="{{item.type}}"
+    data-id="{{item._id}}" wx:key="index">
+    <image src="{{item.imgpath}}" mode='scaleToFill' lazy-load="true"></image>
+  </swiper-item>
+</swiper>
+
+<view class="index-button">
+  <view bindtap="navLocation" class="shadow margin-lr padding-tb">
+    <image class="percetHeiht"
+      src="cloud://mail-stg-oboxi.6d61-mail-stg-oboxi-1300202136/indexResorce/pageresource1.png">
+    </image>
+  </view>
+  <view bindtap="getLocation" class="shadow margin-lr-xs padding-top">
+    <image class="mapHeight" src="cloud://mail-stg-oboxi.6d61-mail-stg-oboxi-1300202136/indexResorce/mapresource.png">
+    </image>
+  </view>
+  <view bindtap="toClass" class="shadow margin-lr-xs padding-tb">
+    <image class="buyHeight" src="cloud://mail-stg-oboxi.6d61-mail-stg-oboxi-1300202136/indexResorce/pageresource3.png">
+    </image>
+  </view>
+</view>
+
+<view class="cu-bar">
+  <view class="action">
+    <text class="cuIcon-title text-orange text-bold text-lg"></text>优惠活动
+  </view>
+</view>
+
+<view class="gym-list">
+  <view class="gym-item  shadow-blur" bindtap="toChild" data-type="{{item.type}}" data-url="{{item.url}}"
+    wx:for="{{activityList}}" wx:key="index">
+    <image src="{{item.imgpath}}" lazy-load="true" mode="aspectFill"></image>
+  </view>
+</view>
+
+<view class="cu-bar">
+  <view class="action">
+
+  </view>
+</view>
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>

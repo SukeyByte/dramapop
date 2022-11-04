@@ -1,0 +1,8 @@
+.mapv{
+  width: 100%; 
+  height: 48vh;
+}
+
+.searchbox{
+  height:calc(80% - 50vh);
+}

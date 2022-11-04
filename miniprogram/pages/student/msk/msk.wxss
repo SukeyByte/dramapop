@@ -1,0 +1,100 @@
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  background:rgba(254,50,103,1);
+  /*实现颜色渐变 */
+}
+/*几个伪类化成的圆弧的样式以及位置（置于顶部）*/
+.msk:before, .tip:before, .split-line:before{
+  border-radius: 0 0 16rpx 16rpx;
+  top: 0;
+}
+.msk:after, .tip:after, .split-line:after{
+  border-radius: 16rpx 16rpx 0 0;
+  bottom: 0;
+}
+
+/*前半部分样式*/
+.msk {
+  position: relative;
+  flex: 1;
+  padding: 20rpx;
+  text-align: left;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+/*给前半部分加两个伪类，基本样式如下*/
+.msk:before, .msk:after{
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 16rpx;
+  background: #eee;
+  left: -16rpx;
+  z-index: 1;
+}
+.tip:before, .tip:after{
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 16rpx;
+  background:#eee;
+  right: -16rpx;
+  z-index: 1;
+}
+
+/*中间竖直虚线样式*/
+.split-line {
+  position: relative;
+  flex: 0 0 0;
+  margin: 0 10rpx 0 6rpx;
+  border-left: 4rpx dashed #eee;   
+}
+/*给虚线加两个伪类，基本样式如下*/
+.split-line:before, .split-line:after {
+  content: '';
+  position: absolute;
+  width: 32rpx;
+  height: 16rpx;
+  background: #eee;
+  left: -18rpx;
+  z-index: 1;
+}
+
+/*后半部分样式*/
+.tip {
+  position: relative;
+  padding:  50rpx 30rpx;
+  flex: 0 0 200rpx;
+  text-align: center;
+}
+
+.getNow{
+  font-style: normal;
+  font-weight: bold;
+  color:rgba(254,50,103,1)
+}
+
+.area {
+  display: relative;
+  flex-direction: column;
+  align-items: center;
+  height: 350rpx;
+}
+.area::after{
+  content: '';
+  width: 120%;
+  height: 500rpx;
+  position: absolute;
+  z-index: -1;
+  left: -10%;
+  top: 0;
+  border-radius: 0 0 50% 50%;
+  background:linear-gradient(145deg, #ff9700, #ed1c24);
+}
+.margin50p{
+  margin-top:45%
+}

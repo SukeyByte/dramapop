@@ -1,0 +1,9 @@
+.imagesize{
+  margin-top: 30%;
+  width: 46%;
+  height: 80%;
+}
+
+.cu-list>.cu-item:last-child {
+  margin-bottom: 128rpx;
+}

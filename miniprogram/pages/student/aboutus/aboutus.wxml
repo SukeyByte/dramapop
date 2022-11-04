@@ -1,0 +1,13 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">关于我们</view>
+</cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于我们</view>
+  <view class='text-content'>
+    <view>Hi！欢迎使用种马波普！</view>
+    <view class='margin-top-sm'>特别感谢***本项目使用了color ui组件的部分内容</view>
+    <view class='margin-top-sm'>更多的内容正在逐渐支持</view>
+    <view class='margin-top-sm'></view>
+    <view class='margin-top-sm'>感谢作者大大（文晓港）</view>
+  </view>
+</view>

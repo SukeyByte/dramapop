@@ -1,0 +1,69 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg bg-blue">
+    <view class="cu-avatar xl round margin-left" style="background-image:url({{coatchInfo.imagepath}});" mode="widthFix">
+    </view>
+    <text class="text-white text-xl" style="margin-top:20rpx">{{coatchInfo.name}}教练,您好</text>
+    <!-- <view wx:if="{{coatchInfo.seller}}" class="cu-tag bg-orange margin-top-xs">{{coatchInfo.seller.name}}</view>
+    <text class="text-white" style="margin-top:30rpx">绑定或解绑后需要刷新才会显示对应信息</text> -->
+  </view>
+
+  <view class="cu-list grid col-3 card-menu margin-top no-border">
+    <view class="cu-item" bindtap="startPackage">
+      <view class="cuIcon-send text-red">
+      </view>
+      <text>课程包</text>
+    </view>
+    <view class="cu-item" bindtap="packageList">
+      <view class="cuIcon-ticket text-red">
+      </view>
+      <text>课程包列表</text>
+    </view>
+    <view class="cu-item" bindtap="packageNeedKnow">
+      <view class="cuIcon-info text-red">
+      </view>
+      <text>绑定健身房</text>
+    </view>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/coatch/timerClass/timerClass" hover-class="none">
+        <text class="cuIcon-time text-purple"></text>
+        <text class="text-grey">我的定时授课</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/coatch/currentMoney/current?iscooperation={{coatchInfo.iscooperation}}" hover-class="none">
+        <text class="cuIcon-refund text-orange"></text>
+        <text class="text-grey">我的当月收益</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/coatch/currentClass/current" hover-class="none">
+        <text class="cuIcon-searchlist text-orange"></text>
+        <text class="text-grey">本月授课历史</text>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/coatch/editInfo/editInfo" hover-class="none">
+        <text class="cuIcon-edit text-pink"></text>
+        <text class="text-grey">申请修改资料</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" open-type="redirect" url="/pages/student/newIndex/newIndex" hover-class="none">
+        <text class="cuIcon-fold text-green"></text>
+        <text class="text-grey">回到学员端</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

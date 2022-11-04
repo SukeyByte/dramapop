@@ -1,0 +1,88 @@
+<view class='cu-custom'>
+  <view class="cu-bar" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view bindtap="selectLocate" class='cuIcon-location text-xl margin-lr' style='top:{{StatusBar}}px;font-size: 36rpx'>
+      {{sellerName}}</view>
+  </view>
+</view>
+
+<swiper class="card-swiper none-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+  duration="500" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item bindtap="tobanner" wx:for="{{bannerList}}" data-url="{{item.url}}" data-type="{{item.type}}"
+    data-id="{{item._id}}" wx:key="index">
+    <view class="swiper-item">
+      <image class="swaper-image" src="{{item.imgpath}}" mode='scaleToFill' lazy-load="true"></image>
+    </view>
+  </swiper-item>
+</swiper>
+
+<view class="cu-list transparent-color grid col-4 no-border">
+  <view class="cu-item" bindtap="navLocation">
+    <view class="cuIcon-qrcode text-cyan">
+    </view>
+    <text>开练啦</text>
+  </view>
+  <view class="cu-item" bindtap="toClass">
+    <view class="cuIcon-hot text-orange">
+    </view>
+    <text>教练选课</text>
+  </view>
+  <view class="cu-item" bindtap="getLocation">
+    <view class="cuIcon-forward text-purple">
+    </view>
+    <text>位置导航</text>
+  </view>
+  <view class="cu-item" bindtap="toLocatelist">
+    <view class="cuIcon-shop text-mauve">
+    </view>
+    <text>健身房信息</text>
+  </view>
+</view>
+
+<view class="cu-bar">
+  <view class="action">
+    <text class="cuIcon-favor text-orange text-bold text-lg"></text>信息推荐
+  </view>
+</view>
+
+<view class='loader' wx:if="{{note.length == 0}}"></view>
+<view>
+  <view class="pools">
+    <view class="left">
+      <block wx:for="{{note}}" wx:key="index">
+        <template is="flow-item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+      </block>
+    </view>
+    <view class="right">
+      <block wx:for="{{note}}" wx:key="index">
+        <template is="flow-item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+      </block>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="cu-tabbar-margin margin-top text-center text-gray">
+  ---这里好像是我们的底线---
+</view> -->
+
+<template name="flow-item">
+  <view class="flow" bindtap="navgateToType" data-id="{{forgionid}}" data-type="{{type}}">
+    <image class="flow-img" src="{{url}}" mode="widthFix" wx:if="{{url !== ''}}"></image>
+    <view class="flow-title-box">
+      <view class="flow-title">{{title}}</view>
+    </view>
+    <view class="name">
+      <!-- <image class="flow-ava" src="{{avatar}}"></image> -->
+      <text class="name-title">{{name}}</text>
+      <view class="heart_">
+        <text class="cu-tag round line-red" wx:if="{{type === 1}}"> 金牌教练 </text>
+        <text class="cu-tag round line-green" wx:if="{{type === 2}}"> 活动奖励 </text>
+        <text class="cu-tag round line-pink" wx:if="{{type === 3}}"> 推荐健身房 </text>
+        <text class="cu-tag round line-blue" wx:if="{{type === 4}}"> 特别文章 </text>
+        <text class="cu-tag round line-orange" wx:if="{{type === 5}}"> 特惠课程 </text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>

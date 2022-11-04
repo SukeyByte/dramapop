@@ -1,0 +1,65 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">消费记录</view>
+</cu-custom>
+
+<view wx:if='{{showdataList.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">还没有选课呢~</text>
+  </view>
+</view>
+
+<view wx:if="{{showdataList!=null && showdataList.length>0}}">
+  <view class="gym-list menu ">
+    <view class="gym-item shadow-warp" wx:for="{{showdataList}}" wx:key='index'>
+      <view class="content padding" data-order="{{item.order}}" bindtap="copy">
+        <view class="text-xl">
+          <text class="margin-xs">{{item.title}}</text>
+          <text class="cu-tag line-red" wx:if="{{item.orderStatus == 2}}">已完成退款</text>
+          <block wx:else>
+            <text class="cu-tag line-green" wx:if="{{item.payType == 0}}">使用卡片支付</text>
+            <block wx:else>
+              <text class="cu-tag line-green" wx:if="{{item.orderStatus == 1}}">已完成支付</text>
+              <text class="cu-tag line-orange" wx:if="{{item.orderStatus == 0}}">微信处理中</text>
+            </block>
+          </block>
+        </view>
+        <view class="margin-xs padding-tb-sm">订单号:<text class="text-gray">{{item.order}}</text></view>
+        <view class="margin-xs">订单创建时间：{{item.createTime}}</view>
+        <view class="margin-xs padding-tb-sm">订单金额： <text class="text-price text-red">{{item.totalMoney}}</text></view>
+      </view>
+      <view class="flex align-end justify-end solid-bottom" bindtap="onTap" data-index="{{index}}">
+        <text class="padding" wx:if="{{index == selectindex}}">可点击关闭</text>
+        <text class="padding" wx:else>可点击展开支付详情</text>
+        <text class="{{index != selectindex?'cuIcon-right':'cuIcon-unfold text-bold'}}  margin"></text>
+      </view>
+      <view class="{{index != selectindex?'isBlock':''}}" style='transition:all 0.4s;'>
+        <view class="padding">
+          使用卡片：
+          <text
+            wx:if="{{item.buyCardInfo!=null && item.buyCardInfo!=undefined}}">{{item.buyCardInfo.buyCardInfo.name}}</text>
+          <text wx:else>未使用卡片支付</text>
+        </view>
+        <view class="padding">
+          使用优惠券：
+          <text wx:if="{{item.mskInfo!=null && item.mskInfo!=undefined}}">{{item.mskInfo.name}}</text>
+          <text wx:else>未使用优惠券支付</text>
+        </view>
+        <view class="padding">
+          使用余额支付金额：<text class="text-price text-red">{{item.balanceMoney}}</text>
+        </view>
+        <view class="padding">
+          微信支付现金金额：<text class="text-price text-red">{{item.payMoney}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

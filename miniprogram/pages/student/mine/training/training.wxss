@@ -1,0 +1,42 @@
+.gym-list {
+  margin-top: 30rpx
+}
+
+.gym-list>.cu-item {
+  background-color: white;
+  margin: 18rpx;
+  border-radius: 24rpx;
+  position: relative;
+}
+
+.gym-list>.cu-item .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gym-list>.cu-item .info {
+  display: flex;
+  margin-top:15rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.gym-list>.cu-item .status {
+  position: absolute;
+  display: flex;
+  margin-top:15rpx;
+  width: auto;
+  transform:rotate(45deg);
+  border:2px solid salmon;
+  top:25rpx;
+  right: 10rpx;
+}
+
+.gym-list>.cu-item .status::after {
+  contain: '';
+
+}
+
+
+

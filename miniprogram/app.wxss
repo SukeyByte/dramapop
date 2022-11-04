@@ -1,0 +1,125 @@
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+@import "colorui/imIcom.wxss";
+@import "gymui/gym.wxss";
+
+.scrollPage {
+  height: 100vh;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 30rpx 0px;
+  justify-content: space-between;
+}
+
+.nav-li {
+  padding: 30rpx;
+  border-radius: 12rpx;
+  width: 45%;
+  margin: 0 2.5% 40rpx;
+  background-image: url(https://6d61-mail-stg-oboxi-1300202136.tcb.qcloud.la/cardBg.png?sign=8b7dba64360983b404dfe4d6a5081b95&t=1608816116);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-li::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: -10%;
+  border-radius: 10rpx;
+  opacity: 0.2;
+  transform: scale(0.9, 0.9);
+}
+
+.nav-li.cur {
+  color: #fff;
+  background: rgb(243, 123, 29);
+  box-shadow: 4rpx 4rpx 6rpx rgba(243, 123, 29, 0.4);
+}
+
+.nav-title {
+  font-size: 32rpx;
+  font-weight: 300;
+  margin-left:20rpx;
+}
+
+.nav-title::first-letter {
+  font-size: 40rpx;
+  margin-right: 4rpx;
+}
+
+.nav-name {
+  font-size: 28rpx;
+  text-transform: Capitalize;
+  margin-top: 20rpx;
+  position: relative;
+  margin-left:20rpx;
+}
+
+.nav-name::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40rpx;
+  height: 6rpx;
+  background: #fff;
+  bottom: 0;
+  right: 0;
+  opacity: 0.5;
+}
+
+.nav-name::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100rpx;
+  background: #fff;
+  bottom: 0;
+  right: 40rpx;
+  opacity: 0.3;
+}
+
+.nav-name::first-letter {
+  font-size: 28rpx;
+  margin-right: 1px;
+}
+
+.nav-li text {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  font-size: 52rpx;
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+
+.coatch-dialog {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+  width: 100vw;
+  height: 100%;
+	max-width: 100%;
+	background-color: #f8f8f8;
+	border-radius: 10rpx;
+  overflow: hidden;
+  padding-top: 5em;
+}

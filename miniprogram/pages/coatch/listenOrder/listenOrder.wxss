@@ -1,0 +1,51 @@
+.userBlock {
+  width: 200rpx;
+  height: 260rpx;
+  border-radius: 20rpx;
+  margin: 20rpx;
+  text-align: center;
+}
+
+.userImage{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-left: 25%;
+}
+
+.userBlock>view {
+  margin-top: 30rpx;
+}
+
+.userHeader {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.start{
+  text-align: center;
+}
+
+.start>view{
+  margin-top: 30rpx;
+  color:var(--grey)
+}
+
+.card-row {
+  display: flex;
+}
+
+.caro-row-one {
+  flex: 1;
+}
+
+.caro-row-span {
+  flex: auto;
+  flex-shrink: 0
+}
+
+.confirmbtn-view {
+  border-top: 1px solid var(--gray);
+  padding-top: 13rpx;
+}

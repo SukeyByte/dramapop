@@ -1,0 +1,21 @@
+<cu-custom isCustom="{{true}}" bgColor="bg-white">
+  <view slot="content">训练历史</view>
+</cu-custom>
+
+<view class="gym-list menu">
+  <view class="cu-item" wx:for="{{training}}" wx:key='index' bindtap="payfor" data-item="{{item}}">
+    <view class="content padding-tb-sm">
+      <view class="title">{{item.start}}--{{item.end}}</view>
+      <view class="info text-gray text-sm">
+        <text class="icon-gym margin-right-xs"></text>运动于种马波普健身房 运动时间{{item.span}}分钟</view>
+    </view>
+    <view wx:if="{{item.pay == 0}}" class="status">
+      <text class="text-red margin-right-xs">尚未支付</text>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

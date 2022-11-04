@@ -1,0 +1,113 @@
+<view class="headerctrl">
+  <view class="flex bg-white" style="padding-top:{{StatusBar}}px;">
+    <view class="cuIcon-search padding searchIcon" bindtap="search"></view>
+    <view class="flex align-end justify-center" style="width:100%">
+      <view class="padding-sm margin-xs radius {{currentPage == 'batch'? 'text-bold bottomline text-xl':''}}"
+        bindtap="navTobatch" data-name="batch">团课</view>
+      <view class="padding-sm margin-xs radius {{currentPage == 'single'? 'text-bold bottomline text-xl':''}}"
+        bindtap="navTobatch" data-name="single">私教</view>
+      <view class="padding-sm margin-xs radius {{currentPage == 'spell'? 'text-bold bottomline text-xl':''}}"
+        bindtap="navTobatch" data-name="spell">拼客</view>
+    </view>
+    <view class="padding text-bold align-end headerRight"></view>
+  </view>
+
+  <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{dateArray}}" wx:key="index"
+        bindtap="tabSelect" data-id="{{index}}" data-item="{{item}}">
+        <view class="flex-sub text-center">
+          <view class=" text-df margin-top-xs">{{item.date_text}}</view>
+          <button class="cu-btn icon margin-tb-xs {{index==TabCur?'bg-orange cur':''}}">
+            <text>{{item.weekName}}</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view style="margin-top:350rpx" wx:if='{{coatchArray.length == 0}}'>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xl text-darkGray">今天的课程已经上完啦</text>
+  </view>
+</view>
+
+<view class="gym-list menu-avatar margin-top">
+  <view class="gym-item margin-top-xs" wx:for="{{coatchArray}}" wx:key="index" data-id="{{index}}"
+    wx:if="{{item.studentOpenId==null || item.studentOpenId==openid}}"
+  >
+    <view class="title">
+      <text class="cuIcon-location"></text>健身房-{{item.seller.name}}
+    </view>
+    <view class="flex" bindtap="coatchDetail" data-item="{{item}}">
+      <view class="flex-sub img-sub lg ">
+        <image src="{{item.coatchInfo.image[0]}}" mode="aspectFill"></image>
+      </view>
+      <view class="flex-twice content">
+        <view class="className text-xl">{{item.name}}</view>
+        <view class="text-gray">预计授课时间<text class="text-red margin-right">{{item.coatchTime}}</text></view>
+        <view class="text-sm">{{item.coatchInfo.name}}教练<text class="text-gray margin-left">可点此查看教练详情</text></view>
+        <view class="text-gray">报名金额<text class="text-red margin-right">{{item.price}}元</text></view>
+      </view>
+    </view>
+    <view class="orderbtns flex justify-between">
+      <view class="cu-tag line-orange">{{item.userList.length}}/{{item.total}}</view>
+      <view wx:if="{{item.coatchInfo.iscooperation == 1}}" class="cu-tag bg-gray lg">合作教练</view>
+      <view wx:if="{{item.makeStatus==1}}" class="cu-tag round bg-green lg" bindtap="toOrderDetails"
+        data-classid="{{item._id}}" data-item="{{item}}" data-id="{{item._openid}}" data-total="{{item.total}}">预约
+      </view>
+      <view wx:if="{{item.makeStatus==2}}" class="cu-tag round bg-orange lg" data-classid="{{item._id}}"
+        data-item="{{item}}" data-id="{{item._openid}}">已经预定</view>
+      <view wx:if="{{item.makeStatus==3}}" class="cu-tag round bg-red lg" data-classid="{{item._id}}"
+        data-item="{{item}}" data-id="{{item._openid}}">满员</view>
+    </view>
+
+  </view>
+</view>
+
+<view class="">
+</view>
+
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>
+
+
+<view class="cu-modal {{showDetail?'show':''}}">
+  <view class="cu-dialog" style="margin-top: 20vh;">
+    <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+      duration="500">
+      <swiper-item wx:for="{{selectItem.coatchInfo.path}}" bindtap="ViewImage"
+        data-url="{{selectItem.coatchInfo.path[index]}}" wx:key="index">
+        <image src="{{item}}" mode='widthFix'></image>
+      </swiper-item>
+    </swiper>
+    <view class="padding-bottom-xs bg-white silde-bottom bottomline">
+      <view class="padding text-bold lg">{{selectItem.coatchInfo.name}}{{pageCode.class004}}</view>
+      <view class="padding text-bold">{{pageCode.class005}}</view>
+      <scroll-view scroll-y class="scroll-detai" scroll-with-animation>
+        <view class="padding">{{selectItem.coatchInfo.detail}}</view>
+      </scroll-view>
+
+      <view class="padding">
+        本课程价格：<text class="text-red  margin-right-xs">{{selectItem.price}}元</text>
+        已报名：{{selectItem.userList.length}}/{{selectItem.total}}
+      </view>
+      <view wx:if="{{selectItem.coatchInfo.iscooperation == 1}}" class="text-xs">
+        合作教练暂时无法使用卡片和优惠券
+      </view>
+    </view>
+    <view class="cu-bar bg-white silde-top">
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">好</view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

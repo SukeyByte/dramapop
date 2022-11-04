@@ -1,0 +1,17 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">参与订单详情</view>
+</cu-custom>
+
+<radio-group class="block">
+  <view class="padding-lr bg-white margin-top" wx:for="{{list}}" wx:key>
+    <view class="solid-bottom padding">
+      <text class="text-xl">{{item.name}}</text>
+      <text class="text-s margin-left">{{item.number}}</text>
+    </view>
+    <view class="padding">{{item.region}}</view>
+    <view class="padding">{{item.locate}}</view>
+    <view class="padding">
+      <radio bindtap="ChangeSelect" data-item="{{item}}" class="red margin-left-sm"></radio>
+    </view>
+  </view>
+</radio-group>

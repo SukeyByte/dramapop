@@ -1,0 +1,141 @@
+<view wx:if="{{showpayInfo}}">
+  <!--支付信息组件-->
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <button class="cu-btn content" bindtap="toBuy">
+        <text class="cuIcon-vipcard text-orange text-xxl"></text>
+        <text class="text-grey">会员卡</text>
+        <text class="text-grey" wx:if="{{buyId!=null}}">---{{buyInfo.buyCardInfo.name}}</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" bindtap="toMKS">
+        <text class="cuIcon-redpacket text-red"></text>
+        <text class="text-grey">优惠券 </text>
+        <text class="text-grey" wx:if="{{mskId!=null}}">---{{mskInfo.name}}</text>
+      </button>
+    </view>
+  </view>
+  <view class="cu-bar padding">
+    <view class="action border-title">
+      <text class="text-xl text-bold text-gray">账户余额</text>
+    </view>
+    <view class="action justify-end border-title">
+      <text class="text-xl text-bold text-red text-price">{{amount}}</text>
+    </view>
+  </view>
+  
+  <view class="cu-bar padding">
+    <view class="action border-title">
+      <text class="text-xl text-bold text-red">余额支付</text>
+    </view>
+    <view class="action justify-end border-title">
+      <text class="text-xl text-bold text-red text-price">{{coastamont}}</text>
+      <text class="bg-red" style="width:100%"></text>
+    </view>
+  </view>
+
+  <view class="cu-bar padding">
+    <view class="action border-title">
+      <text class="text-xl text-bold text-red">微信支付</text>
+    </view>
+    <view class="action justify-end border-title">
+      <text class="text-xl text-bold text-red text-price">{{payPrice}}</text>
+      <text class="bg-red" style="width:100%"></text>
+    </view>
+  </view>
+
+  <view class="padding-xl flex flex-direction">
+    <button bindtap="order" class="cu-btn bg-gradual-orange round lg">确认支付</button>
+  </view>
+</view>
+
+<view wx:if="{{showmsk}}">
+  <!--优惠券信息-->
+  <view wx:if='{{MSKList.length == 0}}'>
+    <view class="padding text-center ">
+      <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+      </image>
+    </view>
+    <view class="padding text-center ">
+      <text class="text-xxl text-darkGray">您还没领取到优惠券哦</text>
+    </view>
+  </view>
+
+  <view wx:else class="gym-card case ">
+    <view class="gym-item shadow {{item._id==mskId?'selectborder':''}}" wx:for="{{MSKList}}" wx:key="index">
+      <view class="image" bindtap="checkMsk" data-id="{{item._id}}" data-item="{{item}}">
+        <image mode="widthFix" src='{{item.msks[0].imgpath}}'>
+        </image>
+        <view class="cu-bar bg-shadeBottom-msk">
+          <view class="padding text-price text-xxl">{{item.price}}</view>
+          <view class="flex-sub text-center">
+            <view class="text-xl padding">
+              <text class="text-text text-bold">{{item.buyCardInfo.name}} {{item.mskName}}优惠券 </text>
+            </view>
+            <view class="padding">
+              {{item.detai}}
+            </view>
+            <view class="padding">
+              {{item.begTime}}~{{item.endTime}}可用
+            </view>
+            <view class="padding">
+              <text class="">
+                <text class="" wx:if="{{item.mskType==0}}">小于购买金额时使用</text>
+                <text class="" wx:if="{{item.mskType==1}}">大于{{item.minPrice }}元且小于{{item.maxPrice }}元 </text>
+                <text class="" wx:if="{{item.mskType==2}}">一次抵扣</text>
+                <text class="" wx:if="{{item.mskType==3}}">一次使用</text>
+              </text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="padding-xl flex flex-direction">
+    <button bindtap="toBank" class="cu-btn bg-gradual-orange round lg">返回</button>
+  </view>
+</view>
+
+<view wx:if="{{showcard}}">
+  <!--会员卡信息-->
+  <view wx:if='{{buyCardList.length == 0}}'>
+    <view class="padding text-center ">
+      <image class="imagesize" mode="widthFix" src='{{blanksrc}}'>
+      </image>
+    </view>
+    <view class="padding text-center ">
+      <text class="text-xxl text-darkGray">您还没购买会员卡哦</text>
+    </view>
+  </view>
+
+  <view wx:else class="gym-card case">
+    <view class="gym-item shadow {{item._id==buyId?'selectborder':''}}" wx:for="{{buyCardList}}" wx:key="index">
+      <view class="buycard image" bindtap="checkBuy" data-id="{{item._id}}" data-item="{{item}}">
+        <image mode="scaleToFill" src='{{item.buyCardInfo.detailImg[0].tempFileURL}}'>
+        </image>
+        <view class="cu-bar bg-shadeBottom-msk">
+          <view class="flex-sub text-center">
+            <view class="padding">
+              <text wx:if="{{item.type==0}}"> 剩余使用次数：{{item.totalCounts}}</text>
+              <view wx:else>
+                <text>有效时间:{{item.totalCounts}}个月</text>
+                <view>激活时间:{{item.lastupdateTime}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="padding-xl flex flex-direction">
+    <button bindtap="toBank" class="cu-btn bg-gradual-orange round lg">返回</button>
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

@@ -1,0 +1,78 @@
+<cu-custom bgColor="bg-white" isCustom="{{false}}">
+  <view slot="content">{{pageCode.index001}}</view>
+  <!--首页 banner图 会员卡购买 -->
+</cu-custom>
+
+<view class="cu-list grid col-3 no-border">
+  <view class="cu-item" bindtap="redictway" wx:for="{{iconList}}" data-badge='{{item.badge}}' wx:key>
+    <view class="{{item.ncu?'cuIcon-'+item.icon:'icon-'+item.icon}} text-{{item.color}}">
+    </view>
+    <view wx:if="{{item.badge == 0?true:false}}" class="cu-tag badge"></view>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav"  scroll-y scroll-with-animation  lower-threshold="0" scroll-top="{{VerticalNavTop}}" style="height:calc(80vh - 575rpx)">
+    <view class="cu-item text-cut padding {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+                <view>
+                  {{item.itemName}}
+                </view>
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" bindscrolltolower="scrollToLower" scroll-y scroll-with-animation style="height:calc(80vh - 200rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+
+
+    <view class="padding-top padding-lr" bindtap="showDetails" wx:for="{{list}}" wx:key id="main-{{index}}" data-id="{{item._id}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-green'></text> {{item.itemName}}</view>
+      </view>
+
+      <view class="dynamic bg-white">
+        <view class="cu-item shadow">
+          <view class="cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url({{item.avatarUrl}});"></view>
+              <view class="content flex-sub">
+                <view>{{item.userName}}</view>
+                <view class="text-gray text-sm flex justify-between">
+                  {{item.createDate}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="padding-lr text-content bg-white">
+            {{item.itemDetail}}
+          </view>
+          <swiper class="padding-lr screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+            <swiper-item wx:for="{{item.images}}" wx:for-item="secItem" wx:key="index">
+              <image src="{{secItem}}" mode="aspectFill" lazy-load="true"></image>
+            </swiper-item>
+          </swiper>
+          <view class="text-gray text-sm text-right padding bg-white">
+            <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.read}}
+            <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.command}}
+            <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.commit}}
+          </view>
+
+          <view class="flex  p-xs margin-bottom-sm mb-sm">
+
+            <view class="flex-twice bg-white padding-sm margin-ls radius">
+              <text class="text-grey text-sm margin-left">低至</text>
+              <text class="text-price text-red text-xxl margin-left">{{item.ruleList[item.ruleList.length-1].money+item.price}}</text>
+              <text class="text-grey text-sm margin-left">快去看看~</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+    </view>
+
+
+  </scroll-view>
+</view>
+
+<gym-footer navFoot="{{dataList}}">
+</gym-footer>

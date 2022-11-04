@@ -1,0 +1,147 @@
+<wxs module="m1">
+  var numberToFix = function (value) {
+    return value.toFixed(2)
+  }
+  module.exports.numberToFix = numberToFix;
+</wxs>
+
+<cu-custom isCustom="{{false}}" bgColor="bg-white">
+  <view slot="content">课程安排</view>
+</cu-custom>
+
+<view class="cu-bar margin-top solid-bottom">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>{{year}}年{{mounth}}月{{day}}日
+  </view>
+  <view class="action text-grey">
+    以下是您的当前课程
+  </view>
+</view>
+
+<view class="flex solid-bottom padding justify-between">
+  <view class="line-grey padding-sm margin-xs radius cuIcon-back " wx:if="{{lastday}}" bindtap="lastdayClass">查看上日安排
+  </view>
+  <view class="line-grey padding-sm margin-xs radius " wx:if="{{hasTomorrow}}" bindtap="tomorrowClass">安排明日课程<text
+      class="cuIcon-right"></text> </view>
+</view>
+
+<view class="flex bg-white text-center">
+  <view class="padding flex-twice">授课时间</view>
+  <view class="padding flex-sub">类型</view>
+  <view class="padding flex-sub">定价</view>
+  <view class="padding flex-sub">操作</view>
+</view>
+
+<view class="flex bg-white text-center" wx:for="{{classList}}" wx:key="index" data-id="{{item.id}}">
+  <view class="padding flex-twice">{{item.startTime}}-{{item.endTime}}</view>
+  <view class="padding flex-sub">
+    <view class="cu-tag round {{item.type == 1?'line-cyan':item.type == 2?'line-orange':'line-pink'}}">
+      {{item.type == 1?'私教':item.type == 2?'团课':'拼团私教'}}</view>
+  </view>
+  <view class="padding flex-sub text-price">{{item.price}}</view>
+  <view class="flex-sub">
+    <view class="cu-btn line-orange round  shadow class-btn" bindtap="deleteClass" data-id="{{item.id}}">删除</view>
+  </view>
+</view>
+
+<view class="padding flex justify-center">
+  <button bindtap="addTimerClass" class="cu-btn bg-orange lg margin-right">新增定时课程</button>
+  <button bindtap="addClass" class="cu-btn bg-orange lg">新增课程安排</button>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>
+
+<view class="cu-modal {{showModel?'show':''}}">
+  <view class="coatch-dialog">
+    <view class="padding-xl">
+      <form>
+        <view class="cu-form-group">
+          <view class="title">课程名称</view>
+          <input bindinput="classNameInput" value="{{className}}"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">开始时间</view>
+          <picker mode="time" value="{{starttime}}" start="09:00" end="23:00" bindchange="startTimeChange">
+            <view class="picker">
+              {{starttime}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">结束时间</view>
+          <picker mode="time" value="{{endtime}}" start="09:00" end="23:00" bindchange="endTimeChange">
+            <view class="picker">
+              {{endtime}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">课程类型</view>
+          <picker bindchange="PickerChange" value="{{index}}" range="{{pickerList}}">
+            <view class="picker">
+              {{index?pickerNameList[index].name:'私教'}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group" wx:if="{{checkedSingle}}">
+          <view class="title">上课人数</view>
+          <input type="number" bindinput="maxPeopleInput" value="{{maxNumber}}"></input>
+        </view>
+        <view class="cu-form-group" wx:if="{{checkedTotalPrice}}">
+          <view class="title">总价</view>
+          <input type="number" bindinput="totalPriceInput" value="{{totalPrice}}"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">单价/人</view>
+          <input type="number" bindinput="priceInput" disabled="{{checkedTotalPrice?'disabled':''}}"
+            value="{{price}}"></input>
+        </view>
+        <view wx:if="{{coatchInfo.iscooperation == 1}}">
+          <view class="cu-form-group">
+            <view class="title">预计收益</view>
+            <view class="text-price text-orange">{{price - localmoney/2}}</view>
+          </view>
+          <view class="cu-form-group">
+            <view class="title">预计总价格</view>
+            <view class="text-price text-orange">{{m1.numberToFix(price*1.1 + localmoney*1)}}</view>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="cu-form-group">
+            <view class="title">本节课预计收益</view>
+            <view class="text-price text-orange">{{m1.numberToFix(price*0.3)}}~{{m1.numberToFix(price*0.36)}}</view>
+          </view>
+        </view>
+        <view class="cu-form-group" wx:if="{{index==0}}">
+          <view class="title">指定学员</view>
+          <picker bindchange="openIdChange" value="{{studentIndex}}" range="{{studentNameList}}">
+            <view class="picker">
+              {{studentList[studentIndex].name}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group" wx:if="{{index==0}}">
+          <view class="title">指定健身房</view>
+          <picker bindchange="openSellerChange" value="{{sellerIndex}}" range="{{sellerNameList}}">
+            <view class="picker">
+              {{sellerList[sellerIndex].name}}
+            </view>
+          </picker>
+        </view>
+      </form>
+    </view>
+    <view wx:if="{{showTimerTips}}">定时任务将每天自动安排课程，可在 我的->定时课程 种管理
+    </view>
+    <view class="text-red">{{error}}
+    </view>
+    <view class="cu-bar bg-white justify-end foot tabbar ">
+      <view class="action">
+        <button class="cu-btn bg-red margin-left" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left" bindtap="saveClass">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

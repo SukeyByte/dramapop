@@ -1,0 +1,23 @@
+<cu-custom bgColor="bg-white" isCustom="{{true}}">
+  <view slot="content">约课订单详情</view>
+</cu-custom>
+
+<view class="nav-list">
+  <view class="nav-li-order bg-orange">
+      <view class="nav-title text-xxl padding text-bold">{{coatchInfo.name}}
+      </view>
+      <view class="nav-name-order padding">{{coatchInfo.coatchInfo.name}}</view>
+      <text class="nav-li-price text-price">{{coatchInfo.price}}</text>
+  </view>
+</view>
+
+<!--插件示例页面useType 为卡片可使用类型 0 场地 1 私教 payType为订单表购买类型-->
+<view>
+  <payc price="{{coatchInfo.price}}" useType='1' payType = '1' title='{{coatchInfo.name}}' itemCode='XK'
+    foreignId='{{coatchInfo._id}}' bindpaymevent='confirmevent'></payc>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

@@ -1,0 +1,59 @@
+.nav-li-order {
+  padding: 30rpx;
+  border-radius: 24rpx;
+  width: 100%;
+  margin-top: 40rpx;
+  background-image: url(https://6d61-mail-stg-oboxi-1300202136.tcb.qcloud.la/cardBg.png?sign=8b7dba64360983b404dfe4d6a5081b95&t=1608816116);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-name-order {
+  font-size: 30rpx;
+  text-transform: Capitalize;
+  margin-top: 20rpx;
+  position: relative;
+  margin-left:20rpx;
+}
+
+.nav-name-order::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40rpx;
+  height: 8rpx;
+  background: #fff;
+  bottom: 0;
+  right: 0;
+  opacity: 0.5;
+}
+
+.nav-name-order::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100rpx;
+  height: 4rpx;
+  background: #fff;
+  bottom: 0;
+  right: 40rpx;
+  opacity: 0.3;
+}
+
+.nav-name-order::first-letter {
+  font-size: 32rpx;
+  margin-right: 1px;
+}
+
+.nav-li-price {
+  position: absolute;
+  right: 130rpx;
+  top: 45rpx;
+  font-size: 52rpx;
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+}

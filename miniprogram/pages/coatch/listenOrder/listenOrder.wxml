@@ -1,0 +1,53 @@
+<cu-custom bgColor="bg-white solid-bottom">
+  <view slot="content">学员报名</view>
+</cu-custom>
+
+<scroll-view scroll-y scroll-with-animation lower-threshold="10" scroll-top="20" wx:if="{{list.length != 0}}"
+  bindscrolltolower="scrollToLower" style="height:calc(85vh)">
+  <view class="gym-list menu-avatar margin-top">
+    <view class="gym-item margin-top-xs" wx:for="{{list}}" wx:key="index" data-id="{{index}}">
+      <view class="title">
+        <text class="cuIcon-location"></text>授课地点-{{sallerName}}
+      </view>
+      <view class="card-row" data-item="{{item}}">
+        <view class="caro-row-one img-sub lg ">
+          <image src="{{item.user.avatarUrl}}" mode="aspectFill"></image>
+        </view>
+        <view class="caro-row-span content margin-left">
+          <view class="className text-xl">{{item.name}}</view>
+          <view class="text-gray">预计授课时间</view>
+          <text class="text-red margin-right">{{item.noonTime}}</text>
+          <view class="text-sm">学员昵称:{{item.user.nickName}}</view>
+        </view>
+      </view>
+      <view class="orderbtns">
+        <view class="confirmbtn-view flex-sub text-right">
+          <button class="cu-btn margin-right {{item.confirmStatus==1?'bg-gray':'bg-orange'}} " bindtap="accapt"
+            data-index="{{index}}" data-status="1" data-item="{{item}}" data-id="{{item._id}}">抢单
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view wx:else>
+  <view class="padding text-center ">
+    <image class="imagesize" mode="widthFix" src='{{imgsrc}}'>
+    </image>
+  </view>
+  <view class="padding text-center ">
+    <text class="text-xxl text-darkGray">暂时没有人报名哦~</text>
+  </view>
+</view>
+
+<view class="cu-bar  margin-bottom">
+  <view class="action">
+
+  </view>
+</view>
+
+<view class="loading-msk" wx:if="{{loadModal}}">
+  <view class='loader'></view>
+  <view class='text-black'>{{loadingtext}}</view>
+</view>

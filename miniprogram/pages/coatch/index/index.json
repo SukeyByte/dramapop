@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "index": "/pages/coatch/studentapply/studentapply",
+    "date": "/pages/coatch/targetclasses/targetclasses",
+    "my": "/pages/coatch/my/my",
+    "stu":"/pages/coatch/listenOrder/listenOrder"
+  }
+}
